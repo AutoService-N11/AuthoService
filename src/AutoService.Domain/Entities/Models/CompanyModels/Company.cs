@@ -1,3 +1,4 @@
+using AutoService.Domain.Entities.Auth;
 using AutoService.Domain.Entities.Models.ServiceModels;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,8 @@ namespace AutoService.Domain.Entities.Models.CompanyModels
 
         public virtual List<CompanyCategory> CompanyCategories { get; set; }
 
-        public List<Service> Services { get; set; }
+        public virtual List<Service> Services { get; set; }
+        public virtual User User { get; set; }
 
     
 

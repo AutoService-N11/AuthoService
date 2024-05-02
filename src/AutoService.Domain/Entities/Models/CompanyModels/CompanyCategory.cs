@@ -14,5 +14,6 @@ namespace AutoService.Domain.Entities.Models.CompanyModels
 
         public Guid CompanyId { get; set; } 
         public virtual Company Company { get; set; }
+
     }
 }

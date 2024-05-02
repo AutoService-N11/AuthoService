@@ -1,3 +1,4 @@
+using AutoService.Domain.Entities.Auth;
 using AutoService.Domain.Entities.Models.UserModels;
 using System;
 using System.Collections.Generic;

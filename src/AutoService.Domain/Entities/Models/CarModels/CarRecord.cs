@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace AutoService.Domain.Entities.Models.CarModels
 {
@@ -16,6 +12,6 @@ namespace AutoService.Domain.Entities.Models.CarModels
         public string Comment { get; set; }
         public string Price { get; set; }
 
-        public virtual CarModel Car { get; set; }
+        public virtual UserCar UserCar { get; set; }
     }
 }
