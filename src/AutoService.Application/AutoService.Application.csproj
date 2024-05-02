@@ -18,7 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="UseCases\AutoServiceCases\" />
     <Folder Include="UseCases\CarCases\" />
     <Folder Include="UseCases\NewsCases\" />
     <Folder Include="UseCases\ServiceCases\" />
