@@ -22,7 +22,6 @@
     <Folder Include="UseCases\CarCases\" />
     <Folder Include="UseCases\ServiceCases\" />
     <Folder Include="UseCases\NewsCases\" />
-    <Folder Include="UseCases\ShopCases\CarSeatCases\" />
   </ItemGroup>
 
 </Project>
