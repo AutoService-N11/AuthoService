@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutoService.Application.UseCases.ShopCases.CarSeatCases.QueryHandlers
+namespace AutoService.Application.UseCases.ShopCases.CarSeatCases.Handlers.QueryHandlers
 {
     public class GetAllCarSeatQueryHandler : IRequestHandler<GetAllCarSeatsQuery, IEnumerable<CarSeatViewModel>>
     {
