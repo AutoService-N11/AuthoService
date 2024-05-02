@@ -28,6 +28,7 @@ namespace AutoService.Application.UseCases.CompanyCases.CompanyCategoryCases.Han
             {
                 ctg.CategoryName = request.newName;
                 _context.CompanyCategories.Update(ctg);
+                await _context.SaveChangesAsync(cancellationToken);
 
                 return new ResponceModel
                 {
