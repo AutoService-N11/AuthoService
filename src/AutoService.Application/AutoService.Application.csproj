@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="AutoService\CarCases\Queries\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="MediatR" Version="11.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.4" />
@@ -19,6 +15,14 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AutoService.Domain\AutoService.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="UseCases\AutoServiceCases\" />
+    <Folder Include="UseCases\CarCases\" />
+    <Folder Include="UseCases\ServiceCases\" />
+    <Folder Include="UseCases\NewsCases\" />
+    <Folder Include="UseCases\ShopCases\CarSeatCases\" />
   </ItemGroup>
 
 </Project>
