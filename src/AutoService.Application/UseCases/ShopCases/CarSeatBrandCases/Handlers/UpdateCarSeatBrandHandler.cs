@@ -3,10 +3,7 @@ using AutoService.Application.UseCases.ShopCases.CarSeatBrandCases.Commands;
 using AutoService.Domain.Entities.Models;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace AutoService.Application.UseCases.ShopCases.CarSeatBrandCases.Handlers
@@ -22,10 +19,12 @@ namespace AutoService.Application.UseCases.ShopCases.CarSeatBrandCases.Handlers
 
         public async Task<ResponceModel> Handle(UpdateCarSeatBrandCommand request, CancellationToken cancellationToken)
         {
-            var res = await _context.CarSeatBrands.FirstOrDefaultAsync(x => x.Id == request.Id);
-            if (res != null)
+            var carSeatBrand = await _context.CarSeatBrands.FirstOrDefaultAsync(x => x.Id == request.Id);
+            if (carSeatBrand != null)
             {
-                res.Name = request.Name;
+                carSeatBrand.Name = request.Name;
+                _context.CarSeatBrands.Update(carSeatBrand);
+                await _context.SaveChangesAsync(cancellationToken); // Await save changes
                 return new ResponceModel
                 {
                     Message = "Changes saved!",
@@ -35,8 +34,9 @@ namespace AutoService.Application.UseCases.ShopCases.CarSeatBrandCases.Handlers
             }
             return new ResponceModel
             {
-                Message = "Something Went Wrong",
+                Message = "Car seat brand not found",
                 StatusCode = 404,
+                IsSuccess = false
             };
         }
     }
