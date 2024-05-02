@@ -45,5 +45,5 @@ namespace AutoService.Application.UseCases.NewsCases.NewsCases.Handlers
             };
         }
     }
-    }
+    
 }

@@ -1,4 +1,9 @@
 
+using AutoService.Domain.Entities.Models.UserModels;
+using AutoService.Infrastracture;
+using AutoService.Infrastracture.Persistance;
+using Microsoft.AspNetCore.Identity;
+
 namespace AutoService.API
 {
     public class Program
@@ -10,6 +15,12 @@ namespace AutoService.API
             // Add services to the container.
 
             builder.Services.AddControllers();
+
+            builder.Services.AddInfrastructure(builder.Configuration);
+
+            builder.Services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<ServiceDbContext>();
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

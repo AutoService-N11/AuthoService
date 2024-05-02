@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AutoService.Application.UseCases.ShopCases.CarSeatCases.Queries
 {
-    public class GetAllCarSeatsQuery: IRequest<IEnumerable<CarSeatViewModel>>
+    public class GetAllCarSeatsQuery: IRequest<IEnumerable<CarSeat>>
     {
 
     }

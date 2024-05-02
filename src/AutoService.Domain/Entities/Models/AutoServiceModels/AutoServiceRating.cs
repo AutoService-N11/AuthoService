@@ -4,6 +4,7 @@ using AutoService.Domain.Entities.Models.UserModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,8 +21,7 @@ namespace AutoService.Domain.Entities.Models.AutoServiceModels
         public string Comment { get; set; }
         public virtual User User { get; set; }
         public virtual UserCar Car { get; set; }
-        public virtual AutoServiceModel AutoServiceModel { get; set; }
-        public virtual UserCar CarModel { get; set; }
+        public virtual AutoServiceModel AutoService { get; set; }
         public virtual Service Service { get; set; }
 
     }
