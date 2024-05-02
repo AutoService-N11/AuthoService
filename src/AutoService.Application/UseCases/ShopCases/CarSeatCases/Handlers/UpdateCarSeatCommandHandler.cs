@@ -23,7 +23,7 @@ namespace AutoService.Application.UseCases.ShopCases.CarSeatCases.Handlers
         public async Task<ResponceModel> Handle(UpdateCarSeatCommand request, CancellationToken cancellationToken)
         {
             var res = await _context.CarSeats.FirstOrDefaultAsync(x => x.Id == request.Id);
-            if (res is null)
+            if (res != null)
             {
                 res.Name = request.Name;
                 res.Price = request.Price;
@@ -43,7 +43,7 @@ namespace AutoService.Application.UseCases.ShopCases.CarSeatCases.Handlers
             }
             return new ResponceModel
             {
-                Message = "Something Wen Wrong",
+                Message = "Something Went Wrong",
                 StatusCode = 404,
             };
         }
