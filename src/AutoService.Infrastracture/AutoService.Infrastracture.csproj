@@ -21,8 +21,4 @@
     <ProjectReference Include="..\AutoService.Application\AutoService.Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Persistance\" />
-  </ItemGroup>
-
 </Project>
