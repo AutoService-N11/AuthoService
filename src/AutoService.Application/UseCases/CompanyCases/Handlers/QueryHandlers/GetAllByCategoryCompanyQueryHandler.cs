@@ -2,15 +2,12 @@ using AutoService.Application.Abstractions;
 using AutoService.Application.UseCases.CompanyCases.Queries;
 using AutoService.Domain.Entities.ViewModels.CompanyViewModels;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace AutoService.Application.UseCases.CompanyCases.Handlers.QueryHandlers
 {
-    public class GetAllByCategoryCompanyQueryHandler : IRequestHandler<GetAllByCategoryCompanyQuery, IEnumerable<CompanyViewModel>>
+    public class GetAllByCategoryCompanyQueryHandler : IRequestHandler<GetAllByCategoryCompanyQuery, List<CompanyViewModel>>
     {
         private readonly IAppDbContext _context;
 
@@ -19,9 +16,25 @@ namespace AutoService.Application.UseCases.CompanyCases.Handlers.QueryHandlers
             _context = context;
         }
 
-        public Task<IEnumerable<CompanyViewModel>> Handle(GetAllByCategoryCompanyQuery request, CancellationToken cancellationToken)
+        public async Task<List<CompanyViewModel>> Handle(GetAllByCategoryCompanyQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            if (request == null)
+            {
+                throw new ArgumentNullException(nameof(request), "Request cannot be null.");
+            }
+
+            var companies = await _context.Companies
+                .Where(c => c.CompanyCategories.Any(cc => cc.CategoryName == request.CategoryName))
+                .Select(c => new CompanyViewModel
+                {
+                    CompanyName = c.CompanyName,
+                    PhotoPath = c.PhotoPath,
+                    CompanyHistory = c.CompanyHistory,
+                })
+                .ToListAsync();
+
+            return companies;
+
         }
     }
 }
