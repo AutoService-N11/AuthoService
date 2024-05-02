@@ -1,6 +1,5 @@
 using AutoService.Application.Abstractions;
 using AutoService.Application.UseCases.AutoServiceCases.AutoServiceCases.Queries;
-using AutoService.Application.UseCases.CompanyCases.Queries;
 using AutoService.Domain.Entities.Models.AutoServiceModels;
 using AutoService.Domain.Entities.ViewModels.AutoServiceViewModels;
 using MediatR;

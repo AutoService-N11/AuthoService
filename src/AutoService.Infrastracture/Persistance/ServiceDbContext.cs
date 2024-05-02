@@ -25,7 +25,6 @@ namespace AutoService.Infrastracture.Persistance
         public DbSet<CompanyCategory> CompanyCategories { get; set; }
         public DbSet<AutoServiceModel> AutoServices { get; set; }
         public DbSet<AutoServiceRating> AutoServiceRatings { get; set; }
-        public DbSet<ServiceCategore> Services { get; set; }
         public DbSet<ServiceCategory> ServiceCategories { get; set; }
         public DbSet<UserCar> Cars { get; set; }
         public DbSet<CarRecord> CarRecords { get; set; }
@@ -34,6 +33,11 @@ namespace AutoService.Infrastracture.Persistance
         public DbSet<CarSeat> CarSeats { get; set; }
         public DbSet<CarSeatBrand> CarSeatBrands { get; set; }
         public DbSet<CarSeatCategory> CarSeatCategories { get; set; }
-        DbSet<User> IAppDbContext.Users { get; set; }
+        public DbSet<Service> Services { get; set; }
+
+        async ValueTask<int> IAppDbContext.SaveChangesAsync(CancellationToken cancellationToken)
+        {
+            return await base.SaveChangesAsync(cancellationToken);
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace AutoService.Domain.Entities.Models.UserModels
     public class UserRequests
     {
         public Guid Id { get; set; } = Guid.NewGuid();
-        public Guid UserId { get; set; }
+        public string UserId { get; set; }
         public Guid AutoServiceId { get; set; }
         public Guid ServiceId { get; set; }
 

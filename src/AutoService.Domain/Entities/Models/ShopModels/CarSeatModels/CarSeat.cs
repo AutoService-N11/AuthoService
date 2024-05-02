@@ -17,8 +17,8 @@ namespace AutoService.Domain.Entities.Models.ShopModels.CarSeatModels
         public string ProdCountry {  get; set; }
         public Guid CategoryId { get; set; }
         public Guid BrandId { get; set; }
-        public virtual CarSeatCategory CarSeatCategory { get; set; }
-        public virtual CarSeatBrand CarSeatBrand { get; set; }
+        public virtual CarSeatCategory Category { get; set; }
+        public virtual CarSeatBrand Brand { get; set; }
 
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AutoService.Application.Abstractions;
 using AutoService.Application.UseCases.ShopCases.CarSeatCases.Queries;
+using AutoService.Domain.Entities.Models.ShopModels.CarSeatModels;
 using AutoService.Domain.Entities.ViewModels.CarSeatViewModels;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace AutoService.Application.UseCases.ShopCases.CarSeatCases.Handlers.QueryHandlers
 {
-    public class GetAllCarSeatQueryHandler : IRequestHandler<GetAllCarSeatsQuery, IEnumerable<CarSeatViewModel>>
+    public class GetAllCarSeatQueryHandler : IRequestHandler<GetAllCarSeatsQuery, IEnumerable<CarSeat>>
     {
         private readonly IAppDbContext _context;
 
@@ -20,22 +21,11 @@ namespace AutoService.Application.UseCases.ShopCases.CarSeatCases.Handlers.Query
             _context = context;
         }
 
-        public async Task<IEnumerable<CarSeatViewModel>> Handle(GetAllCarSeatsQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<CarSeat>> Handle(GetAllCarSeatsQuery request, CancellationToken cancellationToken)
         {
             var res = await _context.CarSeats.ToListAsync(cancellationToken);
-            IEnumerable<CarSeatViewModel> carSeatViewModels = res.Select(x => new CarSeatViewModel
-            {
-                Name = x.Name,
-                Price = x.Price,
-                Guarantee = x.Guarantee,
-                Mass = x.Mass,
-                Size = x.Size,
-                ProdCountry = x.ProdCountry,
-                CategoryStart = x.CarSeatCategory.startAge,
-                CategoryEnd = x.CarSeatCategory.endAge,
-                BrandName = x.CarSeatBrand.Name,
-            }).ToList();
-            return carSeatViewModels;
+            
+            return res;
         }
     }
 }

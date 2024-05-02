@@ -16,23 +16,21 @@ namespace AutoService.Application.Abstractions
 {
     public interface IAppDbContext
     {
-        public DbSet<User> Users { get; set; }
-        public DbSet<UserRequests> UserRequests { get; set; }
-        public DbSet<Company> Companies { get; set; }
-        public DbSet<CompanyCategory> CompanyCategories { get; set; }
-        public DbSet<AutoServiceModel> AutoServices { get; set; }
-        public DbSet<AutoServiceRating> AutoServiceRatings { get; set; }
-        public DbSet<Service> Services { get; set; }
-        public DbSet<ServiceCategory> ServiceCategories { get; set; }
-        public DbSet<UserCar> Cars { get; set; }
-        public DbSet<CarRecord> CarRecords { get; set; }
-        public DbSet<News> news { get; set; }
-        public DbSet<NewsComment> newsComments { get; set; }
-        public DbSet<CarSeat> CarSeats { get; set; }
-        public DbSet<CarSeatBrand> CarSeatBrands { get; set; }
-        public DbSet<CarSeatCategory> CarSeatCategories { get; set; }
+        DbSet<UserRequests> UserRequests { get; set; }
+        DbSet<Company> Companies { get; set; }
+        DbSet<CompanyCategory> CompanyCategories { get; set; }
+        DbSet<AutoServiceModel> AutoServices { get; set; }
+        DbSet<AutoServiceRating> AutoServiceRatings { get; set; }
+        DbSet<Service> Services { get; set; }
+        DbSet<ServiceCategory> ServiceCategories { get; set; }
+        DbSet<UserCar> Cars { get; set; }
+        DbSet<CarRecord> CarRecords { get; set; }
+        DbSet<News> news { get; set; }
+        DbSet<NewsComment> newsComments { get; set; }
+        DbSet<CarSeat> CarSeats { get; set; }
+        DbSet<CarSeatBrand> CarSeatBrands { get; set; }
+        DbSet<CarSeatCategory> CarSeatCategories { get; set; }
 
-        public Task<int> SaveChangesAsync(CancellationToken cancellationToken);
-        Task SaveChangesAsync();
+        ValueTask<int> SaveChangesAsync(CancellationToken cancellationToken = default!);
     }
 }
