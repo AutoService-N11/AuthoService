@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutoService.Application.UseCases.ShopCases.CarSeatCategoryCases.Queries
+namespace AutoService.Application.UseCases.ShopCases.CarSeatCategoryCases.Handlers.QueriesHandler
 {
     public class GetAllCarSeatCategoryQueryHandler : IRequestHandler<GetAllCarSeatCategoryQuery, IEnumerable<CarSeatCategoryViewModel>>
     {
@@ -29,7 +29,7 @@ namespace AutoService.Application.UseCases.ShopCases.CarSeatCategoryCases.Querie
                 endAge = x.endAge,
             }).ToList();
             return view;
-                
+
         }
     }
 }
