@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace AutoService.Domain.Entities.Models.CarModels
 {
     public class CarRecord
@@ -15,5 +16,7 @@ namespace AutoService.Domain.Entities.Models.CarModels
         public string Task { get; set; }
         public string Comment { get; set; }
         public string Price { get; set; }
+
+        public virtual UserCar UserCar { get; set; }
     }
 }

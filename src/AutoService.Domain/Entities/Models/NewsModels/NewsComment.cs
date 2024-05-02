@@ -1,9 +1,12 @@
+using System.ComponentModel.DataAnnotations;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace AutoService.Domain.Entities.Models.NewsModels
 {
@@ -19,5 +22,7 @@ namespace AutoService.Domain.Entities.Models.NewsModels
 
         [MaxLength(500)]
         public string Comment {  get; set; }
+        public virtual News News { get; set; }
+
     }
 }

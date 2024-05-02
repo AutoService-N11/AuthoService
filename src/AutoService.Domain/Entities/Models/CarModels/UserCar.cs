@@ -1,3 +1,4 @@
+using AutoService.Domain.Entities.Auth;
 using AutoService.Domain.Entities.Models.UserModels;
 using System;
 using System.Collections.Generic;
@@ -15,5 +16,7 @@ namespace AutoService.Domain.Entities.Models.CarModels
         public string Model { get; set; }
         public DateTimeOffset ProdYear { get; set; }
         public string VINcode { get; set; }
+
+        public virtual User User { get; set; }
     }
 }

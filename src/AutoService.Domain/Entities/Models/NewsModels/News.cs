@@ -12,5 +12,6 @@ namespace AutoService.Domain.Entities.Models.NewsModels
         public string Name { get; set; }
         public string PhotoPath { get; set; }
         public string Description { get; set; }
+
     }
 }
