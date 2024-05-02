@@ -34,7 +34,6 @@
     <Folder Include="UseCases\ServiceCases\ServiceCategoryCases\Commands\" />
     <Folder Include="UseCases\ServiceCases\ServiceCategoryCases\Handlers\" />
     <Folder Include="UseCases\ServiceCases\ServiceCategoryCases\Queries\" />
-    <Folder Include="UseCases\ShopCases\CarSeatCategoryCases\Queries\" />
   </ItemGroup>
 
 </Project>
