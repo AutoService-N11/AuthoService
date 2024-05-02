@@ -1,5 +1,5 @@
 using AutoService.Application.Abstractions;
-using AutoService.Application.UseCases.CompanyCases.Commands;
+using AutoService.Application.UseCases.CompanyCases.CompanyCases.Commands;
 using AutoService.Domain.Entities.Models;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -9,29 +9,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutoService.Application.UseCases.CompanyCases.Handlers
+namespace AutoService.Application.UseCases.CompanyCases.CompanyCases.Handlers
 {
-    public class UpdateCompanyCommandHandler : IRequestHandler<UpdateCompanyCommand, ResponceModel>
+    public class DeleteCompanyCommandHandler : IRequestHandler<DeleteCompanyCommand, ResponceModel>
     {
         private readonly IAppDbContext _context;
 
-        public UpdateCompanyCommandHandler(IAppDbContext context)
+        public DeleteCompanyCommandHandler(IAppDbContext context)
         {
             _context = context;
         }
 
-        public async Task<ResponceModel> Handle(UpdateCompanyCommand request, CancellationToken cancellationToken)
+        public async Task<ResponceModel> Handle(DeleteCompanyCommand request, CancellationToken cancellationToken)
         {
-            var company = await _context.Companies.FirstOrDefaultAsync(x => x.CompanyName == request.CompanyName);
+            var company = await _context.Companies.FirstOrDefaultAsync(x => x.OwnerId == request.OwnerId);
 
-            if (company != null) 
+            if (company != null)
             {
-                _context.Companies.Update(company);
+                _context.Companies.Remove(company);
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return new ResponceModel
                 {
-                    Message = "Changes saved!",
+                    Message = "Your company has removed!",
                     StatusCode = 200,
                     IsSuccess = true
                 };
@@ -39,7 +39,7 @@ namespace AutoService.Application.UseCases.CompanyCases.Handlers
 
             return new ResponceModel
             {
-                Message = "This company not registered yet!",
+                Message = "First register your company!",
                 StatusCode = 401
             };
         }

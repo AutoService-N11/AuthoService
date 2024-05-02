@@ -18,9 +18,29 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="UseCases\CarCases\" />
-    <Folder Include="UseCases\NewsCases\" />
-    <Folder Include="UseCases\ServiceCases\" />
+    <Folder Include="UseCases\AutoServiceCases\AutoServiceRatingCases\Commands\" />
+    <Folder Include="UseCases\AutoServiceCases\AutoServiceRatingCases\Handlers\" />
+    <Folder Include="UseCases\AutoServiceCases\AutoServiceRatingCases\Queries\" />
+    <Folder Include="UseCases\CarCases\CarCases\Commands\" />
+    <Folder Include="UseCases\CarCases\CarCases\Handlers\" />
+    <Folder Include="UseCases\CarCases\CarCases\Queries\" />
+    <Folder Include="UseCases\CarCases\CarRecordCases\Commands\" />
+    <Folder Include="UseCases\CarCases\CarRecordCases\Handlers\" />
+    <Folder Include="UseCases\CarCases\CarRecordCases\Queries\" />
+    <Folder Include="UseCases\CompanyCases\CompanyCategoryCases\Commands\" />
+    <Folder Include="UseCases\CompanyCases\CompanyCategoryCases\Handlers\" />
+    <Folder Include="UseCases\CompanyCases\CompanyCategoryCases\Queries\" />
+    <Folder Include="UseCases\NewsCases\NewsCases\Commands\" />
+    <Folder Include="UseCases\NewsCases\NewsCases\Handlers\" />
+    <Folder Include="UseCases\NewsCases\NewsCases\Queries\" />
+    <Folder Include="UseCases\NewsCases\NewsCommentCases\Commands\" />
+    <Folder Include="UseCases\NewsCases\NewsCommentCases\Handlers\" />
+    <Folder Include="UseCases\NewsCases\NewsCommentCases\Queries\" />
+    <Folder Include="UseCases\ServiceCases\ServiceCases\Handlers\" />
+    <Folder Include="UseCases\ServiceCases\ServiceCases\Queries\" />
+    <Folder Include="UseCases\ServiceCases\ServiceCategoryCases\Commands\" />
+    <Folder Include="UseCases\ServiceCases\ServiceCategoryCases\Handlers\" />
+    <Folder Include="UseCases\ServiceCases\ServiceCategoryCases\Queries\" />
     <Folder Include="UseCases\ShopCases\CarSeatCases\" />
   </ItemGroup>
 

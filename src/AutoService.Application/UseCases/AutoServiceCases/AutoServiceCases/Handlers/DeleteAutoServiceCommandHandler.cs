@@ -1,5 +1,5 @@
 using AutoService.Application.Abstractions;
-using AutoService.Application.UseCases.AutoServiceCases.Commands;
+using AutoService.Application.UseCases.AutoServiceCases.AutoServiceCases.Commands;
 using AutoService.Domain.Entities.Models;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutoService.Application.UseCases.AutoServiceCases.Handlers
+namespace AutoService.Application.UseCases.AutoServiceCases.AutoServiceCases.Handlers
 {
     public class DeleteAutoServiceCommandHandler : IRequestHandler<DeleteAutoServiceCommand, ResponceModel>
     {
@@ -35,7 +35,7 @@ namespace AutoService.Application.UseCases.AutoServiceCases.Handlers
                     IsSuccess = true,
                     StatusCode = 200
                 };
-                
+
             }
 
             return new ResponceModel()

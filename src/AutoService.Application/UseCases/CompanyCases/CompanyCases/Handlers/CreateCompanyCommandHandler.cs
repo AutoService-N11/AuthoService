@@ -1,5 +1,5 @@
 using AutoService.Application.Abstractions;
-using AutoService.Application.UseCases.CompanyCases.Commands;
+using AutoService.Application.UseCases.CompanyCases.CompanyCases.Commands;
 using AutoService.Domain.Entities.Models;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutoService.Application.UseCases.CompanyCases.Handlers
+namespace AutoService.Application.UseCases.CompanyCases.CompanyCases.Handlers
 {
     public class CreateCompanyCommandHandler : IRequestHandler<CreateCompanyCommand, ResponceModel>
     {
@@ -29,7 +29,7 @@ namespace AutoService.Application.UseCases.CompanyCases.Handlers
                 company.CompanyName = request.CompanyName;
                 company.PhotoPath = request.PhotoPath;
                 company.CompanyHistory = request.CompanyHistory;
-             
+
                 await _context.Companies.AddAsync(company);
                 await _context.SaveChangesAsync(cancellationToken);
 

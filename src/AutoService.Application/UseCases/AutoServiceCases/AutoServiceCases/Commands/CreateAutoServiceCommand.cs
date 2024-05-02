@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutoService.Application.UseCases.AutoServiceCases.Commands
+namespace AutoService.Application.UseCases.AutoServiceCases.AutoServiceCases.Commands
 {
     public class CreateAutoServiceCommand : IRequest<ResponceModel>
     {
