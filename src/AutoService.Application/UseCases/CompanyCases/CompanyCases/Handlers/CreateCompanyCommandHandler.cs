@@ -29,6 +29,7 @@ namespace AutoService.Application.UseCases.CompanyCases.CompanyCases.Handlers
                 company.CompanyName = request.CompanyName;
                 company.PhotoPath = request.PhotoPath;
                 company.CompanyHistory = request.CompanyHistory;
+                company.Photos = request.Photos;
 
                 await _context.Companies.AddAsync(company);
                 await _context.SaveChangesAsync(cancellationToken);

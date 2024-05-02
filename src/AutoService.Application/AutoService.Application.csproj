@@ -26,9 +26,6 @@
     <Folder Include="UseCases\CompanyCases\CompanyCategoryCases\Commands\" />
     <Folder Include="UseCases\CompanyCases\CompanyCategoryCases\Handlers\" />
     <Folder Include="UseCases\CompanyCases\CompanyCategoryCases\Queries\" />
-    <Folder Include="UseCases\NewsCases\NewsCases\Commands\" />
-    <Folder Include="UseCases\NewsCases\NewsCases\Handlers\" />
-    <Folder Include="UseCases\NewsCases\NewsCases\Queries\" />
     <Folder Include="UseCases\NewsCases\NewsCommentCases\Commands\" />
     <Folder Include="UseCases\NewsCases\NewsCommentCases\Handlers\" />
     <Folder Include="UseCases\NewsCases\NewsCommentCases\Queries\" />
