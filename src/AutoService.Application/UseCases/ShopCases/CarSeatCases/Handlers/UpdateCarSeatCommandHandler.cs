@@ -3,10 +3,7 @@ using AutoService.Application.UseCases.ShopCases.CarSeatCases.Commands;
 using AutoService.Domain.Entities.Models;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace AutoService.Application.UseCases.ShopCases.CarSeatCases.Handlers
@@ -22,17 +19,20 @@ namespace AutoService.Application.UseCases.ShopCases.CarSeatCases.Handlers
 
         public async Task<ResponceModel> Handle(UpdateCarSeatCommand request, CancellationToken cancellationToken)
         {
-            var res = await _context.CarSeats.FirstOrDefaultAsync(x => x.Id == request.Id);
-            if (res != null)
+            var carSeat = await _context.CarSeats.FirstOrDefaultAsync(x => x.Id == request.Id);
+            if (carSeat != null)
             {
-                res.Name = request.Name;
-                res.Price = request.Price;
-                res.CategoryId = request.CategoryId;
-                res.BrandId = request.BrandId;
-                res.Mass = request.Mass;
-                res.Size = request.Size;
-                res.ProdCountry = request.ProdCountry;
-                res.Guarantee = request.Guarantee;
+                carSeat.Name = request.Name;
+                carSeat.Price = request.Price;
+                carSeat.CategoryId = request.CategoryId;
+                carSeat.BrandId = request.BrandId;
+                carSeat.Mass = request.Mass;
+                carSeat.Size = request.Size;
+                carSeat.ProdCountry = request.ProdCountry;
+                carSeat.Guarantee = request.Guarantee;
+
+                _context.CarSeats.Update(carSeat); // Corrected entity update
+                await _context.SaveChangesAsync(cancellationToken);
 
                 return new ResponceModel
                 {
@@ -43,11 +43,10 @@ namespace AutoService.Application.UseCases.ShopCases.CarSeatCases.Handlers
             }
             return new ResponceModel
             {
-                Message = "Something Went Wrong",
+                Message = "Car seat not found",
                 StatusCode = 404,
+                IsSuccess = false
             };
         }
-
-
     }
 }

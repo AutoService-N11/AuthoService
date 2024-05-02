@@ -24,9 +24,6 @@
     <Folder Include="UseCases\CompanyCases\CompanyCategoryCases\Queries\" />
     <Folder Include="UseCases\ServiceCases\ServiceCases\Handlers\" />
     <Folder Include="UseCases\ServiceCases\ServiceCases\Queries\" />
-    <Folder Include="UseCases\ServiceCases\ServiceCategoryCases\Commands\" />
-    <Folder Include="UseCases\ServiceCases\ServiceCategoryCases\Handlers\" />
-    <Folder Include="UseCases\ServiceCases\ServiceCategoryCases\Queries\" />
   </ItemGroup>
 
 </Project>

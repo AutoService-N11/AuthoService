@@ -23,18 +23,17 @@ namespace AutoService.Application.UseCases.NewsCases.NewsCases.Handlers
 
         public async Task<ResponceModel> Handle(UpdateNewsCommand request, CancellationToken cancellationToken)
         {
-            var news = await _appDbContext.news.FirstOrDefaultAsync(x => x.Id == request.NewsId);
+            var news1 = await _appDbContext.news.FirstOrDefaultAsync(x => x.Id == request.NewsId);
 
-            if (news != null)
+            if (news1 != null)
             {
-                var res = new News
-                {
-                    Name = request.Name,
-                    Description = request.Description,
-                    MainPhotoPath = request.MainPhotoPath
-                };
 
-                await _appDbContext.news.AddAsync(news);
+                news1.Name = request.Name;
+                news1.Description = request.Description;
+                news1.MainPhotoPath = request.MainPhotoPath;
+            
+
+                _appDbContext.news.Update(news1);
                 await _appDbContext.SaveChangesAsync(cancellationToken);
 
                 return new ResponceModel
