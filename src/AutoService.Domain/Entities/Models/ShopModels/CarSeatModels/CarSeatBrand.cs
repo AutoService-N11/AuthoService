@@ -4,14 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutoService.Domain.Entities.Models.NewsModels
+namespace AutoService.Domain.Entities.Models.ShopModels.CarSeatModels
 {
-    public class News
+    public class CarSeatBrand
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         public string Name { get; set; }
-        public string PhotoPath { get; set; }
-        public string Description { get; set; }
-
     }
 }

@@ -12,5 +12,6 @@ namespace AutoService.Domain.Entities.Models.ServiceModels
         public string Name { get; set; }
         public Guid ServiceId { get; set; }
         public virtual Service Service { get; set; }
+
     }
 }

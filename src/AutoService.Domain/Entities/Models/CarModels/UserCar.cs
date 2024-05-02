@@ -16,7 +16,7 @@ namespace AutoService.Domain.Entities.Models.CarModels
         public string Model { get; set; }
         public DateTimeOffset ProdYear { get; set; }
         public string VINcode { get; set; }
-        public virtual User User { get; set; }
 
+        public virtual User User { get; set; }
     }
 }

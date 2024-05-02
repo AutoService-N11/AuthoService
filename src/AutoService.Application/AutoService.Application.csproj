@@ -10,6 +10,7 @@
     <PackageReference Include="MediatR" Version="11.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="8.0.4" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,12 +18,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Abstractions\" />
-    <Folder Include="Exceptions\" />
-    <Folder Include="UseCases\Services\Commands\" />
-    <Folder Include="UseCases\Services\Handlers\CommandHandlers\" />
-    <Folder Include="UseCases\Services\Handlers\QueryHandlers\" />
-    <Folder Include="UseCases\Services\Queries\" />
+    <Folder Include="UseCases\AutoServiceCases\" />
+    <Folder Include="UseCases\CarCases\" />
+    <Folder Include="UseCases\ServiceCases\" />
+    <Folder Include="UseCases\NewsCases\" />
+    <Folder Include="UseCases\ShopCases\CarSeatCases\" />
   </ItemGroup>
 
 </Project>

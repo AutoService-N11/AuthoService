@@ -21,10 +21,12 @@ namespace AutoService.Domain.Entities.Models.AutoServiceModels
         [MaxLength(5)]
         public int Stars { get; set; }
 
+
         public virtual User User { get; set; }
         public virtual CarModel Car { get; set; }
         public virtual AutoServiceModel AutoServiceModel { get; set; }
         public virtual CarModel CarModel { get; set; }
         public virtual Service Service { get; set; }
+
     }
 }
