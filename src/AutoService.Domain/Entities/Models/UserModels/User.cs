@@ -11,6 +11,5 @@ namespace AutoService.Domain.Entities.Models.UserModels
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string PhoneNumber { get; set; }
     }
 }
