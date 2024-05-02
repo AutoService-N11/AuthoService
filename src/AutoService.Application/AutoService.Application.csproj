@@ -37,7 +37,6 @@
     <Folder Include="UseCases\ServiceCases\ServiceCategoryCases\Commands\" />
     <Folder Include="UseCases\ServiceCases\ServiceCategoryCases\Handlers\" />
     <Folder Include="UseCases\ServiceCases\ServiceCategoryCases\Queries\" />
-    <Folder Include="UseCases\ShopCases\CarSeatBrandCases\Queries\" />
     <Folder Include="UseCases\ShopCases\CarSeatCategoryCases\Commands\" />
     <Folder Include="UseCases\ShopCases\CarSeatCategoryCases\Handlers\" />
     <Folder Include="UseCases\ShopCases\CarSeatCategoryCases\Queries\" />
