@@ -10,6 +10,6 @@ namespace AutoService.Application.UseCases.CompanyCases.Queries
 {
     public class GetAllByCategoryCompanyQuery : IRequest<IEnumerable<CompanyViewModel>>
     {
-        public string CategoryName { get; set; }
+        
     }
 }
