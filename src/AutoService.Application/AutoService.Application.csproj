@@ -22,9 +22,6 @@
     <Folder Include="UseCases\CarCases\CarCases\Queries\" />
     <Folder Include="UseCases\CarCases\CarRecordCases\Queries\" />
     <Folder Include="UseCases\CarCases\CarRecordCases\Queries\" />
-    <Folder Include="UseCases\CompanyCases\CompanyCategoryCases\Commands\" />
-    <Folder Include="UseCases\CompanyCases\CompanyCategoryCases\Handlers\" />
-    <Folder Include="UseCases\CompanyCases\CompanyCategoryCases\Queries\" />
     <Folder Include="UseCases\ServiceCases\ServiceCases\Handlers\" />
     <Folder Include="UseCases\ServiceCases\ServiceCases\Queries\" />
     <Folder Include="UseCases\ServiceCases\ServiceCategoryCases\Commands\" />
