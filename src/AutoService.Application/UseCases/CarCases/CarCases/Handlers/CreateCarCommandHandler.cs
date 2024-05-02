@@ -20,28 +20,26 @@ namespace AutoService.Application.UseCases.CarCases.CarCases.Handlers
         {
             _context = context;
         }
-
         public async Task<ResponceModel> Handle(CreateCarCommand request, CancellationToken cancellationToken)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == request.UserId);
-
-            if (user != null)
+            var car = new UserCar
             {
-                var car = new UserCar
-                {
-                    UserId = user.Id,
-                    Brand = request.Brand,
-                    Model = request.Model,
-                    ProdYear = request.ProdYear,
-                    VINcode = request.VINcode
-                };
-            }
-
-            return new ResponceModel
+                Brand = request.Brand,
+                CarModel = request.CarModel,
+                ProdYear = request.ProdYear,
+                VINcode = request.VINcode,
+                UserId = request.UserId
+            };
+            await _context.Cars.AddAsync(car);
+            await _context.SaveChangesAsync(cancellationToken);
+            return new ResponceModel()
             {
-                Message = "First you need to register or log in",
-                StatusCode = 401
+                Message = "Car created",
+                StatusCode = 200,
+                IsSuccess = true
             };
         }
+
+
     }
 }

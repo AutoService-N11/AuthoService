@@ -10,10 +10,10 @@ namespace AutoService.Application.UseCases.CarCases.CarCases.Commands
 {
     public class CreateCarCommand : IRequest<ResponceModel>
     {
-        public string UserId { get; set; }
         public string Brand { get; set; }
-        public string Model { get; set; }
+        public string CarModel { get; set; }
         public DateTimeOffset ProdYear { get; set; }
         public string VINcode { get; set; }
+        public string UserId { get; set; }
     }
 }
