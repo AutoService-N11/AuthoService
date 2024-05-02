@@ -33,5 +33,6 @@ namespace AutoService.Application.Abstractions
         public DbSet<CarSeatCategory> CarSeatCategories { get; set; }
 
         public Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+        Task SaveChangesAsync();
     }
 }

@@ -26,7 +26,7 @@ namespace AutoService.Domain.Entities.Models.CompanyModels
 
         public virtual User User { get; set; }
         public virtual List<CompanyCategory> CompanyCategories { get; set; }
-        public virtual List<Service> Services { get; set; }
+        public virtual List<ServiceCategore> Services { get; set; }
 
 
     }
