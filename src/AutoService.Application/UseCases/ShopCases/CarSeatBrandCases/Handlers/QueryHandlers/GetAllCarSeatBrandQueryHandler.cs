@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutoService.Application.UseCases.ShopCases.CarSeatBrandCases.QueryHandlers
+namespace AutoService.Application.UseCases.ShopCases.CarSeatBrandCases.Handlers.QueryHandlers
 {
     public class GetAllCarSeatBrandQueryHandler : IRequestHandler<GetAllCarSeatBrandQuery, IEnumerable<CarSeatBrandViewModels>>
     {
