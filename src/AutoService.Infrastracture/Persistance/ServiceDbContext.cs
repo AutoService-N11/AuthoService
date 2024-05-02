@@ -25,7 +25,7 @@ namespace AutoService.Infrastracture.Persistance
         public DbSet<CompanyCategory> CompanyCategories { get; set; }
         public DbSet<AutoServiceModel> AutoServices { get; set; }
         public DbSet<AutoServiceRating> AutoServiceRatings { get; set; }
-        public DbSet<Service> Services { get; set; }
+        public DbSet<ServiceCategore> Services { get; set; }
         public DbSet<ServiceCategory> ServiceCategories { get; set; }
         public DbSet<UserCar> Cars { get; set; }
         public DbSet<CarRecord> CarRecords { get; set; }

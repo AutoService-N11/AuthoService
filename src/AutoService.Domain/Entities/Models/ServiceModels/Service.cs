@@ -13,8 +13,9 @@ namespace AutoService.Domain.Entities.Models.ServiceModels
         public Guid Id { get; set; } = Guid.NewGuid();
         public string Name { get; set; }
         public Guid CompanyID { get; set; } 
+        public Guid ServiceCId { get; set; }
         public virtual Company Company { get; set; }
-        public virtual List<ServiceCategory> ServiceCategory { get; set; }
+        public virtual ServiceCategory ServiceC { get; set; }
 
     }
 }
