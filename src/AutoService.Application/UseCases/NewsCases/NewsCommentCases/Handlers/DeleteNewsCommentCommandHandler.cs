@@ -1,8 +1,6 @@
 using AutoService.Application.Abstractions;
-using AutoService.Application.UseCases.AutoServiceCases.AutoServiceCases.Commands;
 using AutoService.Application.UseCases.NewsCases.NewsCommentCases.Commands;
 using AutoService.Domain.Entities.Models;
-using AutoService.Domain.Entities.Models.NewsModels;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -13,35 +11,27 @@ using System.Threading.Tasks;
 
 namespace AutoService.Application.UseCases.NewsCases.NewsCommentCases.Handlers
 {
-    public class CreateNewsCommentCommandHandler : IRequestHandler<CreateNewsCommentCommand, ResponceModel>
+    public class DeleteNewsCommentCommandHandler : IRequestHandler<DeleteNewsCommentCommand, ResponceModel>
     {
         private readonly IAppDbContext _context;
 
-        public CreateNewsCommentCommandHandler(IAppDbContext context)
+        public DeleteNewsCommentCommandHandler(IAppDbContext context)
         {
             _context = context;
         }
 
-        public async Task<ResponceModel> Handle(CreateNewsCommentCommand request, CancellationToken cancellationToken)
+        public async Task<ResponceModel> Handle(DeleteNewsCommentCommand request, CancellationToken cancellationToken)
         {
-            var res = await _context.news.FirstOrDefaultAsync(x => x.Id == request.NewsId);
+            var comment = await _context.newsComments.FirstOrDefaultAsync(x => x.Id == request.CommentId);
 
-            if (res != null)
+            if (comment != null)
             {
-                var comment = new NewsComment
-                {
-                    NewsId = res.Id,
-                    userFirstName = request.userFirstName,
-                    userLastName = request.userLastName,
-                    Comment = request.Comment
-                };
-
-                await _context.newsComments.AddAsync(comment);
+                _context.newsComments.Remove(comment);
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return new ResponceModel
                 {
-                    Message = "Comment added",
+                    Message = "Your comment have removed!",
                     StatusCode = 200,
                     IsSuccess = true
                 };
