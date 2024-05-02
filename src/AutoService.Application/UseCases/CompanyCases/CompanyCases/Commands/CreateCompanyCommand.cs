@@ -15,6 +15,7 @@ namespace AutoService.Application.UseCases.CompanyCases.CompanyCases.Commands
         public string CompanyName { get; set; }
 
         public string PhotoPath { get; set; }
+        public List<string> Photos { get; set; }
 
         [MaxLength(2000)]
         public string CompanyHistory { get; set; }
