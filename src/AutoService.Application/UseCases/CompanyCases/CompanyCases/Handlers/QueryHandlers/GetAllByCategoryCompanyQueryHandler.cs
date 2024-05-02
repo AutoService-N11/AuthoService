@@ -1,11 +1,11 @@
 using AutoService.Application.Abstractions;
-using AutoService.Application.UseCases.CompanyCases.Queries;
+using AutoService.Application.UseCases.CompanyCases.CompanyCases.Queries;
 using AutoService.Domain.Entities.ViewModels.CompanyViewModels;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 
-namespace AutoService.Application.UseCases.CompanyCases.Handlers.QueryHandlers
+namespace AutoService.Application.UseCases.CompanyCases.CompanyCases.Handlers.QueryHandlers
 {
     public class GetAllByCategoryCompanyQueryHandler : IRequestHandler<GetAllByCategoryCompanyQuery, List<CompanyViewModel>>
     {

@@ -1,5 +1,5 @@
 using AutoService.Application.Abstractions;
-using AutoService.Application.UseCases.CompanyCases.Commands;
+using AutoService.Application.UseCases.CompanyCases.CompanyCases.Commands;
 using AutoService.Domain.Entities.Models;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -9,29 +9,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutoService.Application.UseCases.CompanyCases.Handlers
+namespace AutoService.Application.UseCases.CompanyCases.CompanyCases.Handlers
 {
-    public class DeleteCompanyCommandHandler : IRequestHandler<DeleteCompanyCommand, ResponceModel>
+    public class UpdateCompanyCommandHandler : IRequestHandler<UpdateCompanyCommand, ResponceModel>
     {
         private readonly IAppDbContext _context;
 
-        public DeleteCompanyCommandHandler(IAppDbContext context)
+        public UpdateCompanyCommandHandler(IAppDbContext context)
         {
             _context = context;
         }
 
-        public async Task<ResponceModel> Handle(DeleteCompanyCommand request, CancellationToken cancellationToken)
+        public async Task<ResponceModel> Handle(UpdateCompanyCommand request, CancellationToken cancellationToken)
         {
-            var company = await _context.Companies.FirstOrDefaultAsync(x => x.OwnerId == request.OwnerId);
+            var company = await _context.Companies.FirstOrDefaultAsync(x => x.CompanyName == request.CompanyName);
 
             if (company != null)
             {
-                _context.Companies.Remove(company);
+                _context.Companies.Update(company);
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return new ResponceModel
                 {
-                    Message = "Your company has removed!",
+                    Message = "Changes saved!",
                     StatusCode = 200,
                     IsSuccess = true
                 };
@@ -39,7 +39,7 @@ namespace AutoService.Application.UseCases.CompanyCases.Handlers
 
             return new ResponceModel
             {
-                Message = "First register your company!",
+                Message = "This company not registered yet!",
                 StatusCode = 401
             };
         }

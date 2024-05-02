@@ -1,5 +1,5 @@
 using AutoService.Application.Abstractions;
-using AutoService.Application.UseCases.AutoServiceCases.Commands;
+using AutoService.Application.UseCases.AutoServiceCases.AutoServiceCases.Commands;
 using AutoService.Domain.Entities.Models;
 using AutoService.Domain.Entities.Models.AutoServiceModels;
 using MediatR;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutoService.Application.UseCases.AutoServiceCases.Handlers
+namespace AutoService.Application.UseCases.AutoServiceCases.AutoServiceCases.Handlers
 {
     public class CreateAutoServiceCommandHandler : IRequestHandler<CreateAutoServiceCommand, ResponceModel>
     {
@@ -23,7 +23,7 @@ namespace AutoService.Application.UseCases.AutoServiceCases.Handlers
 
         public async Task<ResponceModel> Handle(CreateAutoServiceCommand request, CancellationToken cancellationToken)
         {
-            if (request == null) 
+            if (request == null)
             {
                 return new ResponceModel
                 {
@@ -32,7 +32,7 @@ namespace AutoService.Application.UseCases.AutoServiceCases.Handlers
                 };
             }
 
-            var services =_context.AutoServices.Where(x => x.CompanyId == request.CompanyId && x.Name == request.Name);
+            var services = _context.AutoServices.Where(x => x.CompanyId == request.CompanyId && x.Name == request.Name);
 
             if (services == null)
             {

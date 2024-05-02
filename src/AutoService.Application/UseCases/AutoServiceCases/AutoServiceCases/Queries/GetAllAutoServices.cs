@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutoService.Application.UseCases.AutoServiceCases.Queries
+namespace AutoService.Application.UseCases.AutoServiceCases.AutoServiceCases.Queries
 {
     public class GetAllAutoServices : IRequest<List<AutoServiceViewModel>>
     {

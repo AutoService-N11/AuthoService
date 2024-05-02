@@ -1,5 +1,5 @@
 using AutoService.Application.Abstractions;
-using AutoService.Application.UseCases.AutoServiceCases.Queries;
+using AutoService.Application.UseCases.AutoServiceCases.AutoServiceCases.Queries;
 using AutoService.Application.UseCases.CompanyCases.Queries;
 using AutoService.Domain.Entities.Models.AutoServiceModels;
 using AutoService.Domain.Entities.ViewModels.AutoServiceViewModels;
@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace AutoService.Application.UseCases.AutoServiceCases.Handlers.QueryHandlers
+namespace AutoService.Application.UseCases.AutoServiceCases.AutoServiceCases.Handlers.QueryHandlers
 {
     public class GetAllAutoServicesQueryHandler : IRequestHandler<GetAllAutoServices, List<AutoServiceViewModel>>
     {

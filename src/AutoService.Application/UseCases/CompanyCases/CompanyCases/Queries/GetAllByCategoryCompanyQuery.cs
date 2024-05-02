@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutoService.Application.UseCases.CompanyCases.Queries
+namespace AutoService.Application.UseCases.CompanyCases.CompanyCases.Queries
 {
     public class GetAllByCategoryCompanyQuery : IRequest<List<CompanyViewModel>>
     {
