@@ -13,10 +13,10 @@ namespace AutoService.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class CarSeate : ControllerBase
+    public class CarSeatController : ControllerBase
     {
         private readonly IMediator _mediator;
-        public CarSeate(IMediator mediator)
+        public CarSeatController(IMediator mediator)
         {
             _mediator = mediator;
         }
