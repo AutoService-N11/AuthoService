@@ -22,7 +22,7 @@ namespace AutoService.Application.Abstractions
         DbSet<AutoServiceModel> AutoServices { get; set; }
         DbSet<AutoServiceRating> AutoServiceRatings { get; set; }
         DbSet<Service> Services { get; set; }
-        DbSet<ServiceCategory> ServiceCategories { get; set; }
+        DbSet<CarSeateBrandViewModel> ServiceCategories { get; set; }
         DbSet<UserCar> Cars { get; set; }
         DbSet<CarRecord> CarRecords { get; set; }
         DbSet<News> news { get; set; }

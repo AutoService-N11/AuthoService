@@ -1,21 +1,18 @@
-﻿using AutoService.Application.UseCases.ServiceCases.ServiceCases.Commands;
-using AutoService.Application.UseCases.ServiceCases.ServiceCases.Queries;
-using AutoService.Domain.Entities.Models.ServiceModels;
+﻿using AutoService.Application.UseCases.ServiceCases.ServiceCategoryCases.Commands;
 using AutoService.Domain.Entities.Models;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using AutoService.Application.UseCases.ServiceCases.ServiceCategoryCases.Commands;
-using AutoService.Application.UseCases.ServiceCases.ServiceCategoryCases.Queries;
+using AutoService.Application.UseCases.ShopCases.CarSeatBrandCases.Queries;
+using AutoService.Domain.Entities.ViewModels.CarSeatViewModels;
 
 namespace AutoService.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class ServiceCategoryController : ControllerBase
+    public class CarSeateBrand : ControllerBase
     {
         private readonly IMediator _mediator;
-        public ServiceCategoryController(IMediator mediator)
+        public CarSeateBrand(IMediator mediator)
         {
             _mediator = mediator;
         }
@@ -26,14 +23,14 @@ namespace AutoService.API.Controllers
             return result;
         }
         [HttpGet]
-        public async Task<List<CarSeateBrandViewModel>> GetAllServiceCategory([FromQuery] GetAllServiceCategoryCommand request)
+        public async Task<IEnumerable<CarSeatBrandViewModels>> GetAllServiceCategory([FromQuery] GetAllCarSeatBrandQuery request)
         {
             var result = await _mediator.Send(request);
             return result;
         }
 
         [HttpPut]
-        public async Task<ResponceModel> UpdateServiceCategory(UpdateServiceCategoryCommand request)
+        public async Task<ResponceModel> UpdateServiceCategory(UpdateSeateBrandCommand request)
         {
             var result = await _mediator.Send(request);
             return result;

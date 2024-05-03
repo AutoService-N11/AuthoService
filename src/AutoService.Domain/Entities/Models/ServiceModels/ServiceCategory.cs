@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AutoService.Domain.Entities.Models.ServiceModels
 {
-    public class ServiceCategory
+    public class CarSeateBrandViewModel
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         public string Name { get; set; }

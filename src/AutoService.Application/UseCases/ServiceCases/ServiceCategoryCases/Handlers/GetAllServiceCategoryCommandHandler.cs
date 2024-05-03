@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AutoService.Application.UseCases.ServiceCases.ServiceCategoryCases.Handlers
 {
-    public class GetAllServiceCategoryCommandHandler : IRequestHandler<GetAllServiceCategoryCommand, List<ServiceCategory>>
+    public class GetAllServiceCategoryCommandHandler : IRequestHandler<GetAllServiceCategoryCommand, List<CarSeateBrandViewModel>>
     {
         private readonly IAppDbContext _appDbContext;
 
@@ -18,7 +18,7 @@ namespace AutoService.Application.UseCases.ServiceCases.ServiceCategoryCases.Han
             _appDbContext = appDbContext;
         }
 
-        public async Task<List<ServiceCategory>> Handle(GetAllServiceCategoryCommand request, CancellationToken cancellationToken)
+        public async Task<List<CarSeateBrandViewModel>> Handle(GetAllServiceCategoryCommand request, CancellationToken cancellationToken)
         {
             var user= await _appDbContext.ServiceCategories.ToListAsync(cancellationToken);
             return user.Skip(request.PageIndex - 1)

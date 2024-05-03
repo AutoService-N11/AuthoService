@@ -15,7 +15,7 @@ namespace AutoService.Domain.Entities.Models.ServiceModels
         public Guid CompanyID { get; set; } 
         public Guid ServiceCId { get; set; }
         public virtual Company Company { get; set; }
-        public virtual ServiceCategory ServiceC { get; set; }
+        public virtual CarSeateBrandViewModel ServiceC { get; set; }
 
     }
 }

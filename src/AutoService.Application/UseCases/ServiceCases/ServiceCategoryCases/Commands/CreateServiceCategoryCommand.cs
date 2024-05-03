@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AutoService.Application.UseCases.ServiceCases.ServiceCategoryCases.Commands
 {
-    public class CreateServiceCategoryCommand:IRequest<ResponceModel>
+    public class UpdateSeateBrandCommand:IRequest<ResponceModel>
     {
         public string Name { get; set; }
     }

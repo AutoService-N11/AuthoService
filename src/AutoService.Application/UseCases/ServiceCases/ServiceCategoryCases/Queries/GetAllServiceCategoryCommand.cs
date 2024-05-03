@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AutoService.Application.UseCases.ServiceCases.ServiceCategoryCases.Queries
 {
-    public class GetAllServiceCategoryCommand:IRequest<List<ServiceCategory>>
+    public class GetAllServiceCategoryCommand:IRequest<List<CarSeateBrandViewModel>>
     {
         public int PageIndex { get; set; }
         public int Size { get; set; } = 10;
