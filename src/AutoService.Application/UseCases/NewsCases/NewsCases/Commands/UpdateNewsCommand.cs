@@ -13,7 +13,6 @@ namespace AutoService.Application.UseCases.NewsCases.NewsCases.Commands
         public Guid NewsId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public string MainPhotoPath { get; set; }
-        public List<string> Photos {  get; set; }
+    
     }
 }

@@ -1,5 +1,6 @@
 using AutoService.Domain.Entities.Models;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,8 +14,7 @@ namespace AutoService.Application.UseCases.CompanyCases.CompanyCases.Commands
     {
         public string CompanyName { get; set; }
 
-        public string PhotoPath { get; set; }
-        public List<string> Photos { get; set; }
+        public IFormFile? PhotoPath { get; set; }
 
         [MaxLength(2000)]
         public string CompanyHistory { get; set; }

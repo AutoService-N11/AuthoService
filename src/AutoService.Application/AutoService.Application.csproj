@@ -24,6 +24,7 @@
     <Folder Include="UseCases\CompanyCases\CompanyCategoryCases\Queries\" />
     <Folder Include="UseCases\ServiceCases\ServiceCases\Handlers\" />
     <Folder Include="UseCases\ServiceCases\ServiceCases\Queries\" />
+	  <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
 </Project>

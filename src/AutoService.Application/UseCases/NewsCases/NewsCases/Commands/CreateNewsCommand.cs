@@ -1,5 +1,6 @@
 using AutoService.Domain.Entities.Models;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,6 @@ namespace AutoService.Application.UseCases.NewsCases.NewsCases.Commands
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public string MainPhotoPath { get; set; }
+        public IFormFile? MainPhotoPath { get; set; }
     }
 }

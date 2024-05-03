@@ -31,7 +31,8 @@ namespace AutoService.Application.UseCases.NewsCases.NewsCases.Handlers.QueryHan
                 mainPhotoPath = x.MainPhotoPath
             }).ToList();
 
-            return news;
+            return news.Skip(request.PageIndex - 1)
+                    .Take(request.Size).ToList();
         }
     }
 }

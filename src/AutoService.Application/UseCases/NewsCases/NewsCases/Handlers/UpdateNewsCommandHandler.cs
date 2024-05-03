@@ -30,7 +30,7 @@ namespace AutoService.Application.UseCases.NewsCases.NewsCases.Handlers
 
                 news1.Name = request.Name;
                 news1.Description = request.Description;
-                news1.MainPhotoPath = request.MainPhotoPath;
+               
             
 
                 _appDbContext.news.Update(news1);

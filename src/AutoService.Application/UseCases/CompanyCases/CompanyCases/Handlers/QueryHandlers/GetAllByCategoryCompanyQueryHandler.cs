@@ -3,6 +3,7 @@ using AutoService.Application.UseCases.CompanyCases.CompanyCases.Queries;
 using AutoService.Domain.Entities.ViewModels.CompanyViewModels;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 
 namespace AutoService.Application.UseCases.CompanyCases.CompanyCases.Handlers.QueryHandlers
@@ -33,7 +34,8 @@ namespace AutoService.Application.UseCases.CompanyCases.CompanyCases.Handlers.Qu
                 })
                 .ToListAsync();
 
-            return companies;
+           
+            return companies.Skip((int)(request.PageIndex - 1)).Take((int)request.Size).ToList();
 
         }
     }

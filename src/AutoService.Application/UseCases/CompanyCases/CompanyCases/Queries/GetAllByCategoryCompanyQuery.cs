@@ -10,6 +10,8 @@ namespace AutoService.Application.UseCases.CompanyCases.CompanyCases.Queries
 {
     public class GetAllByCategoryCompanyQuery : IRequest<List<CompanyViewModel>>
     {
+        public int? PageIndex { get; set; }
+        public int? Size { get; set; } = 10;
         public string CategoryName { get; set; }
     }
 }

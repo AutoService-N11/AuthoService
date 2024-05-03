@@ -26,6 +26,8 @@ namespace AutoService.Application.UseCases.CompanyCases.CompanyCases.Handlers
 
             if (company != null)
             {
+                company.CompanyName = request.CompanyName;
+                company.CompanyHistory = request.CompanyHistory;
                 _context.Companies.Update(company);
                 await _context.SaveChangesAsync(cancellationToken);
 

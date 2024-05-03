@@ -11,5 +11,7 @@ namespace AutoService.Application.UseCases.ShopCases.CarSeatBrandCases.Queries
 {
     public class GetAllCarSeatBrandQuery:IRequest<IEnumerable<CarSeatBrandViewModels>>
     {
+        public int PageIndex { get; set; }
+        public int Size { get; set; } = 10;
     }
 }

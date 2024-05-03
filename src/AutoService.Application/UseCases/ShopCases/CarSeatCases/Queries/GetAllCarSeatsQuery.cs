@@ -11,6 +11,7 @@ namespace AutoService.Application.UseCases.ShopCases.CarSeatCases.Queries
 {
     public class GetAllCarSeatsQuery: IRequest<IEnumerable<CarSeat>>
     {
-
+        public int PageIndex { get; set; }
+        public int Size { get; set; } = 10; 
     }
 }
