@@ -1,5 +1,6 @@
 using AutoService.Application.Abstractions;
 using AutoService.Application.UseCases.NewsCases.NewsCommentCases.Queries;
+using AutoService.Domain.Entities.Models.NewsModels;
 using AutoService.Domain.Entities.ViewModels.NewsCommentViewModels;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace AutoService.Application.UseCases.NewsCases.NewsCommentCases.Handlers.QueryHandlers
 {
-    public class GetAllNewsCommentQueryHandler : IRequestHandler<GetAllNewsCommentQuery, List<NewsCommentViewModel>>
+    public class GetAllNewsCommentQueryHandler : IRequestHandler<GetAllNewsCommentQuery, List<NewsComment>>
     {
         private readonly IAppDbContext _context;
 
@@ -20,18 +21,12 @@ namespace AutoService.Application.UseCases.NewsCases.NewsCommentCases.Handlers.Q
             _context = context;
         }
 
-        public async Task<List<NewsCommentViewModel>> Handle(GetAllNewsCommentQuery request, CancellationToken cancellationToken)
+        public async Task<List<NewsComment>> Handle(GetAllNewsCommentQuery request, CancellationToken cancellationToken)
         {
             var comments = await _context.newsComments.ToListAsync(cancellationToken);
 
-            var Comments = comments.Select(c => new NewsCommentViewModel
-            {
-                firstName = c.userFirstName,
-                lastName = c.userLastName,
-                Comment = c.Comment
-            }).ToList();
 
-            return Comments.Skip(request.PageIndex - 1)
+            return comments.Skip(request.PageIndex - 1)
                     .Take(request.Size)
                             .ToList(); ;
         }
