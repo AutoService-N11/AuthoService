@@ -30,6 +30,7 @@ namespace AutoService.Application.UseCases.ServiceCases.ServiceCategoryCases.Han
             return new ResponceModel
             {
                 IsSuccess = true,
+                StatusCode = 200,
                 Message = "Service category created successfully"
             };
         }
