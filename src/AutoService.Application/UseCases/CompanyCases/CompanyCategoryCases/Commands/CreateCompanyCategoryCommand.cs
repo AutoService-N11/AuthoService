@@ -11,5 +11,6 @@ namespace AutoService.Application.UseCases.CompanyCases.CompanyCategoryCases.Com
     public class CreateCompanyCategoryCommand : IRequest<ResponceModel>
     {
         public string Name { get; set; }
+        
     }
 }

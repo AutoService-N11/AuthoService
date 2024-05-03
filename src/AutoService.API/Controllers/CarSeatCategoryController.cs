@@ -27,7 +27,7 @@ namespace AutoService.API.Controllers
             return result;
         }
         [HttpGet]
-        public async Task<IEnumerable<CarSeatCategoryViewModel>> GetAllServiceCategory([FromQuery] GetAllCarSeatCategoryQuery request)
+        public async Task<IEnumerable<CarSeatCategory>> GetAllServiceCategory([FromQuery] GetAllCarSeatCategoryQuery request)
         {
             var result = await _mediator.Send(request);
             return result;

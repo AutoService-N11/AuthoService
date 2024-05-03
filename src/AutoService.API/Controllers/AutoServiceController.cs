@@ -31,7 +31,7 @@ namespace AutoService.API.Controllers
         }
 
         [HttpGet]
-        public async Task<List<AutoServiceViewModel>> GetAllAutoService([FromQuery] GetAllAutoServices request)
+        public async Task<List<AutoServiceModel>> GetAllAutoService([FromQuery] GetAllAutoServices request)
         {
             var result = await _mediatr.Send(request);
             return result;

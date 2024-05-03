@@ -4,6 +4,7 @@ using AutoService.Domain.Entities.Models.AutoServiceModels;
 using AutoService.Domain.Entities.ViewModels.AutoServiceViewModels;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using AutoService.Domain.Entities.Models.AutoServiceModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ using System.Xml.Linq;
 
 namespace AutoService.Application.UseCases.AutoServiceCases.AutoServiceCases.Handlers.QueryHandlers
 {
-    public class GetAllAutoServicesQueryHandler : IRequestHandler<GetAllAutoServices, List<AutoServiceViewModel>>
+    public class GetAllAutoServicesQueryHandler : IRequestHandler<GetAllAutoServices, List<AutoServiceModel>>
     {
         private readonly IAppDbContext _context;
 
@@ -22,18 +23,14 @@ namespace AutoService.Application.UseCases.AutoServiceCases.AutoServiceCases.Han
             _context = context;
         }
 
-        public async Task<List<AutoServiceViewModel>> Handle(GetAllAutoServices request, CancellationToken cancellationToken)
+        public async Task<List<AutoServiceModel>> Handle(GetAllAutoServices request, CancellationToken cancellationToken)
         {
             var autoServices = await _context.AutoServices
                                              .ToListAsync(cancellationToken);
 
-            List<AutoServiceViewModel> autoServiceViewModels = autoServices.Select(s => new AutoServiceViewModel
-            {
-                Name = s.Name,
-                location = s.Location,
-            }).ToList();
+            
 
-            return autoServiceViewModels.Skip(request.PageIndex - 1)
+            return autoServices.Skip(request.PageIndex - 1)
                     .Take(request.Size)
                             .ToList(); ;
         }

@@ -1,5 +1,6 @@
 ﻿using AutoService.Application.Abstractions;
 using AutoService.Application.UseCases.CarCases.CarRecordCases.Queries;
+using AutoService.Domain.Entities.Models.CarModels;
 using AutoService.Domain.Entities.ViewModels.CarRecordViewModels;
 using AutoService.Domain.Entities.ViewModels.NewsCommentViewModels;
 using MediatR;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace AutoService.Application.UseCases.CarCases.CarRecordCases.Handlers.QueryHandler
 {
-    public class GetAllRecordQueryHandler : IRequestHandler<GetAllCarRecordQuery, IEnumerable<CarRecordViewModel>>
+    public class GetAllRecordQueryHandler : IRequestHandler<GetAllCarRecordQuery, IEnumerable<CarRecord>>
     {
         private readonly IAppDbContext _context;
 
@@ -21,21 +22,13 @@ namespace AutoService.Application.UseCases.CarCases.CarRecordCases.Handlers.Quer
             _context = context;
         }
 
-        public async Task<IEnumerable<CarRecordViewModel>> Handle(GetAllCarRecordQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<CarRecord>> Handle(GetAllCarRecordQuery request, CancellationToken cancellationToken)
         {
             var res = await _context.CarRecords.ToListAsync(cancellationToken);
 
-            var Comments = res.Select(c => new CarRecordViewModel
-            {
-                UserCarId = c.UserCarId,
-                createdDate = c.createdDate,
-                Probeg = c.Probeg,
-                RecordTask = c.RecordTask,
-                Comment = c.Comment,
-                Price = c.Price,
-            }).ToList();
+   
 
-            return Comments.Skip(request.PageIndex - 1)
+            return res.Skip(request.PageIndex - 1)
                     .Take(request.Size)
                             .ToList(); ;
         }

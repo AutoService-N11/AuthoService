@@ -1,6 +1,7 @@
 ﻿using AutoService.Application.UseCases.CompanyCases.CompanyCases.Commands;
 using AutoService.Application.UseCases.CompanyCases.CompanyCases.Queries;
 using AutoService.Domain.Entities.Models;
+using AutoService.Domain.Entities.Models.CompanyModels;
 using AutoService.Domain.Entities.ViewModels.CompanyViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -25,7 +26,7 @@ namespace AutoService.API.Controllers
             return result;
         }
         [HttpGet]
-        public async Task<List<CompanyViewModel>> GetAllCompany([FromQuery] GetAllByCategoryCompanyQuery request)
+        public async Task<List<Company>> GetAllCompany([FromQuery] GetAllByCategoryCompanyQuery request)
         {
             var result = await _mediator.Send(request);
             return result;

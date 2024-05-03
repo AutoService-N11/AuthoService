@@ -28,14 +28,11 @@ namespace AutoService.Application.UseCases.CarCases.CarCases.Handlers
 
             if (res != null)
             {
-                var result = new UserCar()
-                {
-                    CarModel = request.CarModel,
-                    Brand = request.Brand,
-                    ProdYear = request.ProdYear,
-                    VINcode = request.VINcode,
-                    UserId = request.UserId,
-                };
+                res.Brand = request.Brand;
+                res.CarModel = request.CarModel;
+                res.ProdYear = request.ProdYear;
+                res.VINcode = request.VINcode;
+                res.UsersId = request.UserId; 
 
                 _context.Cars.Update(res);
                 await _context.SaveChangesAsync(cancellationToken);

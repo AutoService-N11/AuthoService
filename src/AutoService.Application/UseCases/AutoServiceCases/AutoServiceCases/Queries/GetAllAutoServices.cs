@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AutoService.Application.UseCases.AutoServiceCases.AutoServiceCases.Queries
 {
-    public class GetAllAutoServices : IRequest<List<AutoServiceViewModel>>
+    public class GetAllAutoServices : IRequest<List<AutoServiceModel>>
     {
         public int PageIndex { get; set; }
         public int Size { get; set; } = 10;

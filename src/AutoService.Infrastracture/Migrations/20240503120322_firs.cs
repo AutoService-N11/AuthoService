@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AutoService.Infrastracture.Migrations
 {
     /// <inheritdoc />
-    public partial class test : Migration
+    public partial class firs : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -78,6 +78,19 @@ namespace AutoService.Infrastracture.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CarSeatCategories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CompanyCategories",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    CategoryName = table.Column<string>(type: "text", nullable: false),
+                    CompanyId = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CompanyCategories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -221,34 +234,14 @@ namespace AutoService.Infrastracture.Migrations
                     CarModel = table.Column<string>(type: "text", nullable: false),
                     ProdYear = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
                     VINcode = table.Column<string>(type: "text", nullable: false),
-                    UserId = table.Column<string>(type: "text", nullable: false)
+                    UsersId = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cars", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Cars_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Companies",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    CompanyName = table.Column<string>(type: "text", nullable: false),
-                    CompanyHistory = table.Column<string>(type: "character varying(2000)", maxLength: 2000, nullable: false),
-                    OwnerId = table.Column<string>(type: "text", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Companies", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Companies_AspNetUsers_OwnerId",
-                        column: x => x.OwnerId,
+                        name: "FK_Cars_AspNetUsers_UsersId",
+                        column: x => x.UsersId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -286,6 +279,26 @@ namespace AutoService.Infrastracture.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Companies",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    CompanyName = table.Column<string>(type: "text", nullable: false),
+                    CompanyHistory = table.Column<string>(type: "character varying(2000)", maxLength: 2000, nullable: false),
+                    CompanyCategoriesId = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Companies", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Companies_CompanyCategories_CompanyCategoriesId",
+                        column: x => x.CompanyCategoriesId,
+                        principalTable: "CompanyCategories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "newsComments",
                 columns: table => new
                 {
@@ -311,19 +324,20 @@ namespace AutoService.Infrastracture.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    UserCarId = table.Column<Guid>(type: "uuid", nullable: false),
+                    UserCaresId = table.Column<string>(type: "text", nullable: false),
                     createdDate = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
                     Probeg = table.Column<int>(type: "integer", nullable: false),
                     RecordTask = table.Column<string>(type: "text", nullable: false),
                     Comment = table.Column<string>(type: "text", nullable: false),
-                    Price = table.Column<string>(type: "text", nullable: false)
+                    Price = table.Column<string>(type: "text", nullable: false),
+                    UserCaresId1 = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CarRecords", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CarRecords_Cars_UserCarId",
-                        column: x => x.UserCarId,
+                        name: "FK_CarRecords_Cars_UserCaresId1",
+                        column: x => x.UserCaresId1,
                         principalTable: "Cars",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -353,32 +367,13 @@ namespace AutoService.Infrastracture.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CompanyCategories",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    CategoryName = table.Column<string>(type: "text", nullable: false),
-                    CompanyId = table.Column<Guid>(type: "uuid", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CompanyCategories", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_CompanyCategories_Companies_CompanyId",
-                        column: x => x.CompanyId,
-                        principalTable: "Companies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Services",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
                     CompanyID = table.Column<Guid>(type: "uuid", nullable: false),
-                    ServiceCId = table.Column<Guid>(type: "uuid", nullable: false)
+                    ServicesId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -390,8 +385,8 @@ namespace AutoService.Infrastracture.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Services_ServiceCategories_ServiceCId",
-                        column: x => x.ServiceCId,
+                        name: "FK_Services_ServiceCategories_ServicesId",
+                        column: x => x.ServicesId,
                         principalTable: "ServiceCategories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -402,18 +397,19 @@ namespace AutoService.Infrastracture.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    UserId = table.Column<string>(type: "text", nullable: false),
+                    UserId = table.Column<Guid>(type: "uuid", nullable: false),
                     AutoServiceId = table.Column<Guid>(type: "uuid", nullable: false),
                     CarId = table.Column<Guid>(type: "uuid", nullable: false),
                     ServiceId = table.Column<Guid>(type: "uuid", nullable: false),
-                    Comment = table.Column<string>(type: "text", nullable: false)
+                    Comment = table.Column<string>(type: "text", nullable: false),
+                    UserId1 = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AutoServiceRatings", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AutoServiceRatings_AspNetUsers_UserId",
-                        column: x => x.UserId,
+                        name: "FK_AutoServiceRatings_AspNetUsers_UserId1",
+                        column: x => x.UserId1,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -442,7 +438,7 @@ namespace AutoService.Infrastracture.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    UserId = table.Column<string>(type: "text", nullable: false),
+                    UsersId = table.Column<string>(type: "text", nullable: false),
                     AutoServiceId = table.Column<Guid>(type: "uuid", nullable: false),
                     ServiceId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
@@ -450,8 +446,8 @@ namespace AutoService.Infrastracture.Migrations
                 {
                     table.PrimaryKey("PK_UserRequests", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UserRequests_AspNetUsers_UserId",
-                        column: x => x.UserId,
+                        name: "FK_UserRequests_AspNetUsers_UsersId",
+                        column: x => x.UsersId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -522,9 +518,9 @@ namespace AutoService.Infrastracture.Migrations
                 column: "ServiceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AutoServiceRatings_UserId",
+                name: "IX_AutoServiceRatings_UserId1",
                 table: "AutoServiceRatings",
-                column: "UserId");
+                column: "UserId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AutoServices_CompanyId",
@@ -532,9 +528,9 @@ namespace AutoService.Infrastracture.Migrations
                 column: "CompanyId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CarRecords_UserCarId",
+                name: "IX_CarRecords_UserCaresId1",
                 table: "CarRecords",
-                column: "UserCarId");
+                column: "UserCaresId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CarSeats_BrandId",
@@ -547,19 +543,14 @@ namespace AutoService.Infrastracture.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cars_UserId",
+                name: "IX_Cars_UsersId",
                 table: "Cars",
-                column: "UserId");
+                column: "UsersId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Companies_OwnerId",
+                name: "IX_Companies_CompanyCategoriesId",
                 table: "Companies",
-                column: "OwnerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CompanyCategories_CompanyId",
-                table: "CompanyCategories",
-                column: "CompanyId");
+                column: "CompanyCategoriesId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Services_CompanyID",
@@ -567,9 +558,9 @@ namespace AutoService.Infrastracture.Migrations
                 column: "CompanyID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Services_ServiceCId",
+                name: "IX_Services_ServicesId",
                 table: "Services",
-                column: "ServiceCId");
+                column: "ServicesId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserRequests_AutoServiceId",
@@ -582,9 +573,9 @@ namespace AutoService.Infrastracture.Migrations
                 column: "ServiceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserRequests_UserId",
+                name: "IX_UserRequests_UsersId",
                 table: "UserRequests",
-                column: "UserId");
+                column: "UsersId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_newsComments_NewsId",
@@ -620,9 +611,6 @@ namespace AutoService.Infrastracture.Migrations
                 name: "CarSeats");
 
             migrationBuilder.DropTable(
-                name: "CompanyCategories");
-
-            migrationBuilder.DropTable(
                 name: "UserRequests");
 
             migrationBuilder.DropTable(
@@ -650,13 +638,16 @@ namespace AutoService.Infrastracture.Migrations
                 name: "news");
 
             migrationBuilder.DropTable(
+                name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
                 name: "Companies");
 
             migrationBuilder.DropTable(
                 name: "ServiceCategories");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "CompanyCategories");
         }
     }
 }

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using AutoService.Application.UseCases.ShopCases.CarSeatBrandCases.Queries;
 using AutoService.Domain.Entities.ViewModels.CarSeatViewModels;
 using AutoService.Application.UseCases.ShopCases.CarSeatBrandCases.Commands;
+using AutoService.Domain.Entities.Models.ShopModels.CarSeatModels;
 
 namespace AutoService.API.Controllers
 {
@@ -24,7 +25,7 @@ namespace AutoService.API.Controllers
             return result;
         }
         [HttpGet]
-        public async Task<IEnumerable<CarSeatBrandViewModels>> GetAllServiceCategory([FromQuery] GetAllCarSeatBrandQuery request)
+        public async Task<IEnumerable<CarSeatBrand>> GetAllServiceCategory([FromQuery] GetAllCarSeatBrandQuery request)
         {
             var result = await _mediator.Send(request);
             return result;

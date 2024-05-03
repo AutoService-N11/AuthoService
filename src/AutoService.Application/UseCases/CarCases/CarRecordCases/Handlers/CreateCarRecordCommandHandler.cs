@@ -25,7 +25,7 @@ namespace AutoService.Application.UseCases.CarCases.CarRecordCases.Handlers
         {
             var result = new CarRecord()
             {
-                UserCarId = request.UserCarId,
+                UserCaresId = request.UserCarId,
                 createdDate = request.createdDate,
                 Probeg = request.Probeg,
                 RecordTask = request.RecordTask,

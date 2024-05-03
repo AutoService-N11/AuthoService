@@ -18,6 +18,6 @@ namespace AutoService.Application.UseCases.CompanyCases.CompanyCases.Commands
         [MaxLength(2000)]
         public string CompanyHistory { get; set; }
 
-        public string OwnerId { get; set; }
+        public Guid CompanyCategoryId { get; set; }
     }
 }

@@ -1,9 +1,5 @@
 using AutoService.Domain.Entities.Models.UserModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace AutoService.Domain.Entities.Models.CarModels
 {
@@ -14,7 +10,7 @@ namespace AutoService.Domain.Entities.Models.CarModels
         public string CarModel { get; set; }
         public DateTimeOffset ProdYear { get; set; }
         public string VINcode { get; set; }
-        public string UserId { get; set; }
-        public virtual User User { get; set; }
+        public string UsersId { get; set; }
+        public virtual User Users { get; set; }
     }
 }

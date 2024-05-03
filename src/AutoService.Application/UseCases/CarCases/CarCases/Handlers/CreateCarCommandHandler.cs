@@ -22,13 +22,13 @@ namespace AutoService.Application.UseCases.CarCases.CarCases.Handlers
         }
         public async Task<ResponceModel> Handle(CreateCarCommand request, CancellationToken cancellationToken)
         {
-            var car = new UserCar
+            var car = new UserCar()
             {
                 Brand = request.Brand,
                 CarModel = request.CarModel,
                 ProdYear = request.ProdYear,
                 VINcode = request.VINcode,
-                UserId = request.UserId
+                UsersId = request.UserId
             };
             await _context.Cars.AddAsync(car);
             await _context.SaveChangesAsync(cancellationToken);

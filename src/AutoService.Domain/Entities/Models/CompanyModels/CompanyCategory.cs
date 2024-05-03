@@ -11,6 +11,6 @@ namespace AutoService.Domain.Entities.Models.CompanyModels
         public Guid Id { get; set; } = Guid.NewGuid();
         public string CategoryName { get; set; }
         public Guid CompanyId { get; set; }
-        public virtual Company Company { get; set; }
+        public virtual List<Company> Company { get; set; }
     }
 }

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace AutoService.Application.UseCases.ShopCases.CarSeatBrandCases.Handlers.QueryHandlers
 {
-    public class GetAllCarSeatBrandQueryHandler : IRequestHandler<GetAllCarSeatBrandQuery, IEnumerable<CarSeatBrandViewModels>>
+    public class GetAllCarSeatBrandQueryHandler : IRequestHandler<GetAllCarSeatBrandQuery, IEnumerable<CarSeatBrand>>
     {
         private readonly IAppDbContext _context;
 
@@ -21,14 +21,11 @@ namespace AutoService.Application.UseCases.ShopCases.CarSeatBrandCases.Handlers.
             _context = context;
         }
 
-        public async Task<IEnumerable<CarSeatBrandViewModels>> Handle(GetAllCarSeatBrandQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<CarSeatBrand>> Handle(GetAllCarSeatBrandQuery request, CancellationToken cancellationToken)
         {
             var res = await _context.CarSeatBrands.ToListAsync(cancellationToken);
-            IEnumerable<CarSeatBrandViewModels> carSeatbrandViewModels = res.Select(x => new CarSeatBrandViewModels
-            {
-                Name = x.Name,
-            }).ToList();
-            return carSeatbrandViewModels.Skip(request.PageIndex - 1)
+            
+            return res.Skip(request.PageIndex - 1)
                     .Take(request.Size).ToList(); ;
         }
     }

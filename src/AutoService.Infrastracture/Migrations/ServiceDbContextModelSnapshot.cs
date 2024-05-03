@@ -80,7 +80,10 @@ namespace AutoService.Infrastracture.Migrations
                     b.Property<Guid>("ServiceId")
                         .HasColumnType("uuid");
 
-                    b.Property<string>("UserId")
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("UserId1")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -92,7 +95,7 @@ namespace AutoService.Infrastracture.Migrations
 
                     b.HasIndex("ServiceId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("AutoServiceRatings");
                 });
@@ -118,7 +121,11 @@ namespace AutoService.Infrastracture.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid>("UserCarId")
+                    b.Property<string>("UserCaresId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("UserCaresId1")
                         .HasColumnType("uuid");
 
                     b.Property<DateTimeOffset>("createdDate")
@@ -126,7 +133,7 @@ namespace AutoService.Infrastracture.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserCarId");
+                    b.HasIndex("UserCaresId1");
 
                     b.ToTable("CarRecords");
                 });
@@ -148,7 +155,7 @@ namespace AutoService.Infrastracture.Migrations
                     b.Property<DateTimeOffset>("ProdYear")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("UserId")
+                    b.Property<string>("UsersId")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -158,7 +165,7 @@ namespace AutoService.Infrastracture.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UsersId");
 
                     b.ToTable("Cars");
                 });
@@ -167,6 +174,9 @@ namespace AutoService.Infrastracture.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("CompanyCategoriesId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("CompanyHistory")
@@ -178,13 +188,9 @@ namespace AutoService.Infrastracture.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("OwnerId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("OwnerId");
+                    b.HasIndex("CompanyCategoriesId");
 
                     b.ToTable("Companies");
                 });
@@ -203,8 +209,6 @@ namespace AutoService.Infrastracture.Migrations
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
 
                     b.ToTable("CompanyCategories");
                 });
@@ -274,14 +278,14 @@ namespace AutoService.Infrastracture.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid>("ServiceCId")
+                    b.Property<Guid>("ServicesId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyID");
 
-                    b.HasIndex("ServiceCId");
+                    b.HasIndex("ServicesId");
 
                     b.ToTable("Services");
                 });
@@ -391,7 +395,7 @@ namespace AutoService.Infrastracture.Migrations
                     b.Property<Guid>("ServiceId")
                         .HasColumnType("uuid");
 
-                    b.Property<string>("UserId")
+                    b.Property<string>("UsersId")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -401,7 +405,7 @@ namespace AutoService.Infrastracture.Migrations
 
                     b.HasIndex("ServiceId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UsersId");
 
                     b.ToTable("UserRequests");
                 });
@@ -663,7 +667,7 @@ namespace AutoService.Infrastracture.Migrations
 
                     b.HasOne("AutoService.Domain.Entities.Models.UserModels.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("UserId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -678,46 +682,35 @@ namespace AutoService.Infrastracture.Migrations
 
             modelBuilder.Entity("AutoService.Domain.Entities.Models.CarModels.CarRecord", b =>
                 {
-                    b.HasOne("AutoService.Domain.Entities.Models.CarModels.UserCar", "UserCar")
+                    b.HasOne("AutoService.Domain.Entities.Models.CarModels.UserCar", "UserCares")
                         .WithMany()
-                        .HasForeignKey("UserCarId")
+                        .HasForeignKey("UserCaresId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("UserCar");
+                    b.Navigation("UserCares");
                 });
 
             modelBuilder.Entity("AutoService.Domain.Entities.Models.CarModels.UserCar", b =>
                 {
-                    b.HasOne("AutoService.Domain.Entities.Models.UserModels.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
+                    b.HasOne("AutoService.Domain.Entities.Models.UserModels.User", "Users")
+                        .WithMany("Cars")
+                        .HasForeignKey("UsersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("User");
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("AutoService.Domain.Entities.Models.CompanyModels.Company", b =>
                 {
-                    b.HasOne("AutoService.Domain.Entities.Models.UserModels.User", "Owner")
-                        .WithMany()
-                        .HasForeignKey("OwnerId")
+                    b.HasOne("AutoService.Domain.Entities.Models.CompanyModels.CompanyCategory", "CompanyCategories")
+                        .WithMany("Company")
+                        .HasForeignKey("CompanyCategoriesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Owner");
-                });
-
-            modelBuilder.Entity("AutoService.Domain.Entities.Models.CompanyModels.CompanyCategory", b =>
-                {
-                    b.HasOne("AutoService.Domain.Entities.Models.CompanyModels.Company", "Company")
-                        .WithMany("CompanyCategories")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Company");
+                    b.Navigation("CompanyCategories");
                 });
 
             modelBuilder.Entity("AutoService.Domain.Entities.Models.NewsModels.NewsComment", b =>
@@ -739,15 +732,15 @@ namespace AutoService.Infrastracture.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AutoService.Domain.Entities.Models.ServiceModels.ServiceCategory", "ServiceC")
+                    b.HasOne("AutoService.Domain.Entities.Models.ServiceModels.ServiceCategory", "Services")
                         .WithMany("Services")
-                        .HasForeignKey("ServiceCId")
+                        .HasForeignKey("ServicesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Company");
 
-                    b.Navigation("ServiceC");
+                    b.Navigation("Services");
                 });
 
             modelBuilder.Entity("AutoService.Domain.Entities.Models.ShopModels.CarSeatModels.CarSeat", b =>
@@ -783,9 +776,9 @@ namespace AutoService.Infrastracture.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AutoService.Domain.Entities.Models.UserModels.User", "User")
+                    b.HasOne("AutoService.Domain.Entities.Models.UserModels.User", "Users")
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("UsersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -793,7 +786,7 @@ namespace AutoService.Infrastracture.Migrations
 
                     b.Navigation("Service");
 
-                    b.Navigation("User");
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -849,14 +842,22 @@ namespace AutoService.Infrastracture.Migrations
 
             modelBuilder.Entity("AutoService.Domain.Entities.Models.CompanyModels.Company", b =>
                 {
-                    b.Navigation("CompanyCategories");
-
                     b.Navigation("Services");
+                });
+
+            modelBuilder.Entity("AutoService.Domain.Entities.Models.CompanyModels.CompanyCategory", b =>
+                {
+                    b.Navigation("Company");
                 });
 
             modelBuilder.Entity("AutoService.Domain.Entities.Models.ServiceModels.ServiceCategory", b =>
                 {
                     b.Navigation("Services");
+                });
+
+            modelBuilder.Entity("AutoService.Domain.Entities.Models.UserModels.User", b =>
+                {
+                    b.Navigation("Cars");
                 });
 #pragma warning restore 612, 618
         }

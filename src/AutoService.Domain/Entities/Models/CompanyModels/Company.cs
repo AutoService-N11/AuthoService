@@ -17,10 +17,9 @@ namespace AutoService.Domain.Entities.Models.CompanyModels
 
         [MaxLength(2000)]
         public string CompanyHistory {  get; set; }
-        public string OwnerId { get; set; }
+        public Guid CompanyCategoriesId { get; set; }
 
-        public virtual User Owner { get; set; }
-        public virtual List<CompanyCategory> CompanyCategories { get; set; }
+        public virtual CompanyCategory CompanyCategories { get; set; }
         public virtual List<Service> Services { get; set; }
 
 

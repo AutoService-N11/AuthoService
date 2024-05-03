@@ -1,4 +1,5 @@
-﻿using AutoService.Domain.Entities.ViewModels.CarRecordViewModels;
+﻿using AutoService.Domain.Entities.Models.CarModels;
+using AutoService.Domain.Entities.ViewModels.CarRecordViewModels;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AutoService.Application.UseCases.CarCases.CarRecordCases.Queries
 {
-    public class GetAllCarRecordQuery: IRequest<IEnumerable<CarRecordViewModel>>
+    public class GetAllCarRecordQuery: IRequest<IEnumerable<CarRecord>>
     {
         public int PageIndex { get; set; }
         public int Size { get; set; } = 10;

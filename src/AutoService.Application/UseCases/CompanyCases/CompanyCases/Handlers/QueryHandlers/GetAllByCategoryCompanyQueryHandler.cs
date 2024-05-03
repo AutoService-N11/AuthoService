@@ -1,5 +1,6 @@
 using AutoService.Application.Abstractions;
 using AutoService.Application.UseCases.CompanyCases.CompanyCases.Queries;
+using AutoService.Domain.Entities.Models.CompanyModels;
 using AutoService.Domain.Entities.ViewModels.CompanyViewModels;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +9,7 @@ using System.Linq;
 
 namespace AutoService.Application.UseCases.CompanyCases.CompanyCases.Handlers.QueryHandlers
 {
-    public class GetAllByCategoryCompanyQueryHandler : IRequestHandler<GetAllByCategoryCompanyQuery, List<CompanyViewModel>>
+    public class GetAllByCategoryCompanyQueryHandler : IRequestHandler<GetAllByCategoryCompanyQuery, List<Company>>
     {
         private readonly IAppDbContext _context;
 
@@ -17,7 +18,7 @@ namespace AutoService.Application.UseCases.CompanyCases.CompanyCases.Handlers.Qu
             _context = context;
         }
 
-        public async Task<List<CompanyViewModel>> Handle(GetAllByCategoryCompanyQuery request, CancellationToken cancellationToken)
+        public async Task<List<Company>> Handle(GetAllByCategoryCompanyQuery request, CancellationToken cancellationToken)
         {
             if (request == null)
             {
@@ -25,17 +26,12 @@ namespace AutoService.Application.UseCases.CompanyCases.CompanyCases.Handlers.Qu
             }
 
             var companies = await _context.Companies
-                .Where(c => c.CompanyCategories.Any(cc => cc.CategoryName == request.CategoryName))
-                .Select(c => new CompanyViewModel
-                {
-                    CompanyName = c.CompanyName,
-                 
-                    CompanyHistory = c.CompanyHistory,
-                })
-                .ToListAsync();
+                .Skip(request.PageIndex - 1)
+                .Take(request.Size)
+                .ToListAsync(cancellationToken);
 
-           
-            return companies.Skip((int)(request.PageIndex - 1)).Take((int)request.Size).ToList();
+
+            return companies;
 
         }
     }

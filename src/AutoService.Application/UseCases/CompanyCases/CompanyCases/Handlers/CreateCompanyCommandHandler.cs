@@ -29,7 +29,7 @@ namespace AutoService.Application.UseCases.CompanyCases.CompanyCases.Handlers
                
                     CompanyHistory = request.CompanyHistory,
                     CompanyName = request.CompanyName,
-                    OwnerId = request.OwnerId
+                    CompanyCategoriesId = request.CompanyCategoryId
                 };
 
                 await _context.Companies.AddAsync(diplom);

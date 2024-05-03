@@ -3,6 +3,7 @@ using AutoService.Application.UseCases.CarCases.CarRecordCases.Queries;
 using AutoService.Application.UseCases.NewsCases.NewsCases.Commands;
 using AutoService.Application.UseCases.NewsCases.NewsCases.Queries;
 using AutoService.Domain.Entities.Models;
+using AutoService.Domain.Entities.Models.CarModels;
 using AutoService.Domain.Entities.ViewModels.CarRecordViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -30,7 +31,7 @@ namespace AutoService.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<CarRecordViewModel>> GetAllNews([FromQuery] GetAllCarRecordQuery request)
+        public async Task<IEnumerable<CarRecord>> GetAllNews([FromQuery] GetAllCarRecordQuery request)
         {
             var result = await _mediatr.Send(request);
             return result;
