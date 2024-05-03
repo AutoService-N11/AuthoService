@@ -1,5 +1,6 @@
 using AutoService.Application.Abstractions;
 using AutoService.Application.UseCases.CompanyCases.CompanyCategoryCases.Queries;
+using AutoService.Domain.Entities.Models.CarModels;
 using AutoService.Domain.Entities.Models.CompanyModels;
 using AutoService.Domain.Entities.ViewModels.CompanyCategoryViewModels;
 using MediatR;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace AutoService.Application.UseCases.CompanyCases.CompanyCategoryCases.Handlers.QueryHandlers
 {
-    public class GetAllCompanyCategoryQueryHandler : IRequestHandler<GetAllCompanyCategoryQuery, List<CompanyCategoryViewModel>>
+    public class GetAllCompanyCategoryQueryHandler : IRequestHandler<GetAllCompanyCategoryQuery, List<CompanyCategory>>
     {
         private readonly IAppDbContext _context;
 
@@ -21,16 +22,12 @@ namespace AutoService.Application.UseCases.CompanyCases.CompanyCategoryCases.Han
             _context = context;
         }
 
-        public async Task<List<CompanyCategoryViewModel>> Handle(GetAllCompanyCategoryQuery request, CancellationToken cancellationToken)
+        public async Task<List<CompanyCategory>> Handle(GetAllCompanyCategoryQuery request, CancellationToken cancellationToken)
         {
             var ctgs = await _context.CompanyCategories.ToListAsync(cancellationToken);
 
-            var Categories = ctgs.Select(x => new CompanyCategoryViewModel
-            {
-                Name = x.CategoryName
-            }).ToList();
 
-            return Categories.Skip(request.PageIndex - 1)
+            return ctgs.Skip(request.PageIndex - 1)
                     .Take(request.Size)
                             .ToList(); ;
         }
