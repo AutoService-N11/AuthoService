@@ -1,9 +1,6 @@
-﻿using AutoService.Application.UseCases.ServiceCases.ServiceCases.Commands;
-using AutoService.Application.UseCases.ServiceCases.ServiceCases.Queries;
-using AutoService.Domain.Entities.Models.ServiceModels;
+﻿using AutoService.Domain.Entities.Models.ServiceModels;
 using AutoService.Domain.Entities.Models;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using AutoService.Application.UseCases.ServiceCases.ServiceCategoryCases.Commands;
 using AutoService.Application.UseCases.ServiceCases.ServiceCategoryCases.Queries;

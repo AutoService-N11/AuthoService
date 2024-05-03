@@ -4,6 +4,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using AutoService.Application.UseCases.ShopCases.CarSeatBrandCases.Queries;
 using AutoService.Domain.Entities.ViewModels.CarSeatViewModels;
+using AutoService.Application.UseCases.ShopCases.CarSeatBrandCases.Commands;
 
 namespace AutoService.API.Controllers
 {
@@ -17,7 +18,7 @@ namespace AutoService.API.Controllers
             _mediator = mediator;
         }
         [HttpPost]
-        public async Task<ResponceModel> CreateServiceCategory(UpdateSeateBrandCommand request)
+        public async Task<ResponceModel> CreateServiceCategory(CreateCarSeatBrandCommand request)
         {
             var result = await _mediator.Send(request);
             return result;
@@ -30,14 +31,14 @@ namespace AutoService.API.Controllers
         }
 
         [HttpPut]
-        public async Task<ResponceModel> UpdateServiceCategory(UpdateSeateBrandCommand request)
+        public async Task<ResponceModel> UpdateServiceCategory(UpdateCarSeatBrandCommand request)
         {
             var result = await _mediator.Send(request);
             return result;
         }
 
         [HttpDelete]
-        public async Task<ResponceModel> DeleteServiceCategory(DeleteSeateBrandCommand request)
+        public async Task<ResponceModel> DeleteServiceCategory(DeleteCarSeatBrandCommand request)
         {
             var result = await _mediator.Send(request);
             return result;

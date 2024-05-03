@@ -6,6 +6,7 @@ using AutoService.Domain.Entities.Models.NewsModels;
 using AutoService.Domain.Entities.Models.ServiceModels;
 using AutoService.Domain.Entities.Models.ShopModels.CarSeatModels;
 using AutoService.Domain.Entities.Models.UserModels;
+using AutoService.Domain.Entities.ViewModels.CarSeatViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -25,7 +26,7 @@ namespace AutoService.Infrastracture.Persistance
         public DbSet<CompanyCategory> CompanyCategories { get; set; }
         public DbSet<AutoServiceModel> AutoServices { get; set; }
         public DbSet<AutoServiceRating> AutoServiceRatings { get; set; }
-        public DbSet<CarSeateBrandViewModel> ServiceCategories { get; set; }
+        public DbSet<ServiceCategory> ServiceCategories { get; set; }
         public DbSet<UserCar> Cars { get; set; }
         public DbSet<CarRecord> CarRecords { get; set; }
         public DbSet<News> news { get; set; }

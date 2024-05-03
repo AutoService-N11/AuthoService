@@ -3,6 +3,7 @@ using AutoService.Application.UseCases.ServiceCases.ServiceCategoryCases.Command
 using AutoService.Domain.Entities.Models;
 using AutoService.Domain.Entities.Models.ServiceModels;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -19,12 +20,8 @@ namespace AutoService.Application.UseCases.ServiceCases.ServiceCategoryCases.Han
 
         public async Task<ResponceModel> Handle(CreateServiceCategoryCommand request, CancellationToken cancellationToken)
         {
-            var serviceCategory = new CarSeateBrandViewModel
-            {
-                Name = request.Name
-            };
-
-            await _appDbContext.ServiceCategories.AddAsync(serviceCategory);
+           
+            await _appDbContext.ServiceCategories.AddAsync(request);
             await _appDbContext.SaveChangesAsync(cancellationToken);
 
             return new ResponceModel
