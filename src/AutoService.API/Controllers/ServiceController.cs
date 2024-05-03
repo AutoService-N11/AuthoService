@@ -25,11 +25,12 @@ namespace AutoService.API.Controllers
             return result;
         }
         [HttpGet]
-        public async Task<List<Service>> GetAllService(GetAllServiceQuery request)
+        public async Task<List<Service>> GetAllService([FromQuery] GetAllServiceQuery request)
         {
             var result = await _mediator.Send(request);
             return result;
         }
+
         [HttpPut]
         public async Task<ResponceModel> UpdateService(UpdateServiceCommand request)
         {
