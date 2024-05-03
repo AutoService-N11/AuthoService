@@ -8,6 +8,7 @@ namespace AutoService.Domain.Entities.ViewModels.CarRecordViewModels
 {
     public class CarRecordViewModel
     {
+        public Guid CarRecordId { get; set; }
         public Guid UserCarId { get; set; }
         public DateTimeOffset createdDate { get; set; } = DateTimeOffset.Now;
         public int Probeg { get; set; }
