@@ -34,8 +34,6 @@ namespace AutoService.Application.UseCases.CompanyCases.CompanyCases.Handlers
                 var file = request.PhotoPath;
 
 
-                try
-                {
                     fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                     filePath = Path.Combine(_webHostEnvironment.WebRootPath, "CompanyPhoto", fileName);
                     using (var stream = new FileStream(filePath, FileMode.Create))
@@ -43,15 +41,7 @@ namespace AutoService.Application.UseCases.CompanyCases.CompanyCases.Handlers
                         await file.CopyToAsync(stream);
                     }
 
-                }
-                catch (Exception ex)
-                {
-                    return new ResponceModel
-                    {
-                        Message = "This company have trable",
-                        StatusCode = 409
-                    };
-                }
+                
             }
 
                 if (company == null)
