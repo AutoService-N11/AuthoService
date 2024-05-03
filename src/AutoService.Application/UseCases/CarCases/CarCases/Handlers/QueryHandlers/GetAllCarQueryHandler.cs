@@ -1,4 +1,5 @@
 ﻿using AutoService.Application.Abstractions;
+using AutoService.Application.UseCases.CarCases.CarCases.Queries;
 using AutoService.Domain.Entities.Models.CarModels;
 using AutoService.Domain.Entities.ViewModels.CarViewModel;
 using AutoService.Domain.Entities.ViewModels.NewsViewModels;
@@ -10,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutoService.Application.UseCases.CarCases.CarCases.Queries
+namespace AutoService.Application.UseCases.CarCases.CarCases.Handlers.QueryHandlers
 {
     public class GetAllCarQueryHandler : IRequestHandler<GetAllCarQuery, IEnumerable<UserCar>>
     {
@@ -26,7 +27,7 @@ namespace AutoService.Application.UseCases.CarCases.CarCases.Queries
             var res = await _context.Cars.ToListAsync(cancellationToken);
             return res.Skip(request.PageIndex - 1)
                     .Take(request.Size)
-                            .ToList(); 
+                            .ToList();
         }
     }
 }

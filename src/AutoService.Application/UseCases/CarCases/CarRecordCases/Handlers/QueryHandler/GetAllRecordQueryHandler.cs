@@ -10,9 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutoService.Application.UseCases.CarCases.CarRecordCases.QueryHandler
+namespace AutoService.Application.UseCases.CarCases.CarRecordCases.Handlers.QueryHandler
 {
-    public class GetAllRecordQueryHandler : IRequestHandler<GetAllCarRecordQuery,IEnumerable<CarRecordViewModel>>
+    public class GetAllRecordQueryHandler : IRequestHandler<GetAllCarRecordQuery, IEnumerable<CarRecordViewModel>>
     {
         private readonly IAppDbContext _context;
 
