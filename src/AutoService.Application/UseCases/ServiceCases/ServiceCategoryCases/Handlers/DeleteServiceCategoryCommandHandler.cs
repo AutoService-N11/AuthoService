@@ -26,6 +26,7 @@ namespace AutoService.Application.UseCases.ServiceCases.ServiceCategoryCases.Han
                 return new ResponceModel
                 {
                     IsSuccess = false,
+                    StatusCode = 200,
                     Message = "Service category not found"
                 };
             }

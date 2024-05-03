@@ -26,6 +26,7 @@ namespace AutoService.Application.UseCases.ServiceCases.ServiceCategoryCases.Han
                 return new ResponceModel
                 {
                     IsSuccess = false,
+                    StatusCode = 409,
                     Message = "Service category not found"
                 };
             }
@@ -38,6 +39,7 @@ namespace AutoService.Application.UseCases.ServiceCases.ServiceCategoryCases.Han
             return new ResponceModel
             {
                 IsSuccess = true,
+                StatusCode = 200,
                 Message = "Service category updated successfully"
             };
         }
