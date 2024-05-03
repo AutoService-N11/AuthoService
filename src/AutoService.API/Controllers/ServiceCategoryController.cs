@@ -20,27 +20,27 @@ namespace AutoService.API.Controllers
             _mediator = mediator;
         }
         [HttpPost]
-        public async Task<ResponceModel> CreateService(CreateServiceCategoryCommand request)
+        public async Task<ResponceModel> CreateServiceCategory(CreateServiceCategoryCommand request)
         {
             var result = await _mediator.Send(request);
             return result;
         }
         [HttpGet]
-        public async Task<List<ServiceCategory>> GetAllService([FromQuery] GetAllServiceCategoryCommand request)
+        public async Task<List<ServiceCategory>> GetAllServiceCategory([FromQuery] GetAllServiceCategoryCommand request)
         {
             var result = await _mediator.Send(request);
             return result;
         }
 
         [HttpPut]
-        public async Task<ResponceModel> UpdateService(UpdateServiceCategoryCommand request)
+        public async Task<ResponceModel> UpdateServiceCategory(UpdateServiceCategoryCommand request)
         {
             var result = await _mediator.Send(request);
             return result;
         }
 
         [HttpDelete]
-        public async Task<ResponceModel> DeleteService(DeleteServiceCategoryCommand request)
+        public async Task<ResponceModel> DeleteServiceCategory(DeleteServiceCategoryCommand request)
         {
             var result = await _mediator.Send(request);
             return result;
