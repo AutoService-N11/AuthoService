@@ -10,7 +10,6 @@ namespace AutoService.Application.UseCases.NewsCases.NewsCommentCases.Commands
 {
     public class UpdateNewsCommentCommand : IRequest<ResponceModel>
     {
-        public Guid NewsId { get; set; }
         public Guid CommentId { get; set; }
         public string UserFirstName { get; set; }
         public string UserLastName { get; set; }
