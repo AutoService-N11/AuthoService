@@ -11,5 +11,6 @@ namespace AutoService.Application.UseCases.ServiceCases.ServiceCategoryCases.Com
     public class CreateServiceCategoryCommand: IRequest<ResponceModel>
     {
         public string Name { get; set; }
+        public Guid Id { get; set; }
     }
 }

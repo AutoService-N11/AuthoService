@@ -4,8 +4,6 @@ using AutoService.Domain.Entities.Models;
 using AutoService.Domain.Entities.Models.ServiceModels;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace AutoService.Application.UseCases.ServiceCases.ServiceCategoryCases.Handlers
 {
@@ -17,11 +15,14 @@ namespace AutoService.Application.UseCases.ServiceCases.ServiceCategoryCases.Han
         {
             _appDbContext = appDbContext;
         }
-
         public async Task<ResponceModel> Handle(CreateServiceCategoryCommand request, CancellationToken cancellationToken)
         {
-           
-            await _appDbContext.ServiceCategories.AddAsync(request);
+            var result = new ServiceCategory
+            {
+                Name = request.Name,
+                Id = request.Id,
+            };
+            await _appDbContext.ServiceCategories.AllAsync(result);
             await _appDbContext.SaveChangesAsync(cancellationToken);
 
             return new ResponceModel
