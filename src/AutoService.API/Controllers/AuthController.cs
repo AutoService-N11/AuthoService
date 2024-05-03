@@ -8,12 +8,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AutoService.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class AuthController : ControllerBase
     {
         private readonly UserManager<User> _userManager;
         private readonly IAuthService _authService;
+
         public AuthController(UserManager<User> userManager, IAuthService authService)
         {
             _userManager = userManager;
@@ -40,6 +41,8 @@ namespace AutoService.API.Controllers
 
             if (!result.Succeeded)
                 throw new Exception();
+
+            await _userManager.AddToRoleAsync(user, "User");
 
             return Ok(new ResponceModel()
             {
