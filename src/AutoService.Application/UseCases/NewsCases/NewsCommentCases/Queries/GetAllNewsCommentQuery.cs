@@ -1,3 +1,4 @@
+using AutoService.Domain.Entities.Models.NewsModels;
 using AutoService.Domain.Entities.ViewModels.NewsCommentViewModels;
 using MediatR;
 using System;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AutoService.Application.UseCases.NewsCases.NewsCommentCases.Queries
 {
-    public class GetAllNewsCommentQuery : IRequest<List<NewsCommentViewModel>>
+    public class GetAllNewsCommentQuery : IRequest<List<NewsComment>>
     {
         public int PageIndex { get; set; }
         public int Size { get; set; } = 10;

@@ -23,10 +23,6 @@ namespace AutoService.Application.UseCases.NewsCases.NewsCommentCases.Handlers
 
         public async Task<ResponceModel> Handle(UpdateNewsCommentCommand request, CancellationToken cancellationToken)
         {
-            var res = await _context.news.FirstOrDefaultAsync(x => x.Id == request.NewsId);
-
-            if (res != null)
-            {
                 var res2 = await _context.newsComments.FirstOrDefaultAsync(x => x.Id == request.CommentId);
 
                 if (res2 != null)
@@ -49,12 +45,5 @@ namespace AutoService.Application.UseCases.NewsCases.NewsCommentCases.Handlers
                     StatusCode = 401
                 };
             }
-
-            return new ResponceModel
-            {
-                Message = "Something went wrong!",
-                StatusCode = 401
-            };
-        }
     }
 }
