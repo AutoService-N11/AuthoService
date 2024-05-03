@@ -30,7 +30,9 @@ namespace AutoService.Application.UseCases.CompanyCases.CompanyCategoryCases.Han
                 Name = x.CategoryName
             }).ToList();
 
-            return Categories;
+            return Categories.Skip(request.PageIndex - 1)
+                    .Take(request.Size)
+                            .ToList(); ;
         }
     }
 }

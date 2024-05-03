@@ -10,5 +10,7 @@ namespace AutoService.Application.UseCases.ShopCases.CarSeatCategoryCases.Querie
 {
     public class GetAllCarSeatCategoryQuery: IRequest<IEnumerable<CarSeatCategoryViewModel>>
     {
+        public int PageIndex { get; set; }
+        public int Size { get; set; } = 10;
     }
 }

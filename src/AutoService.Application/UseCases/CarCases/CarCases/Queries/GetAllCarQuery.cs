@@ -10,5 +10,7 @@ namespace AutoService.Application.UseCases.CarCases.CarCases.Queries
 {
     public class GetAllCarQuery: IRequest<IEnumerable<CarViewModel>>
     {
+        public int PageIndex { get; set; }
+        public int Size { get; set; } = 10;
     }
 }

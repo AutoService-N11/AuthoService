@@ -33,7 +33,9 @@ namespace AutoService.Application.UseCases.CarCases.CarCases.Queries
                 UserId = x.UserId,
             }).ToList();
 
-            return news;
+            return news.Skip(request.PageIndex - 1)
+                    .Take(request.Size)
+                            .ToList(); ;
         }
     }
 }

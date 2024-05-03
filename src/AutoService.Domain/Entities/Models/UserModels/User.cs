@@ -7,5 +7,6 @@ namespace AutoService.Domain.Entities.Models.UserModels
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string Role { get; set; }
     }
 }

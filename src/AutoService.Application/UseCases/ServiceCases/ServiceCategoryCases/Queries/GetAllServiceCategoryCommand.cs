@@ -11,5 +11,7 @@ namespace AutoService.Application.UseCases.ServiceCases.ServiceCategoryCases.Que
 {
     public class GetAllServiceCategoryCommand:IRequest<List<ServiceCategory>>
     {
+        public int PageIndex { get; set; }
+        public int Size { get; set; } = 10;
     }
 }

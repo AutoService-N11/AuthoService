@@ -11,5 +11,7 @@ namespace AutoService.Application.UseCases.CompanyCases.CompanyCategoryCases.Que
 {
     public class GetAllCompanyCategoryQuery : IRequest<List<CompanyCategoryViewModel>>
     {
+        public int PageIndex { get; set; }
+        public int Size { get; set; } = 10;
     }
 }

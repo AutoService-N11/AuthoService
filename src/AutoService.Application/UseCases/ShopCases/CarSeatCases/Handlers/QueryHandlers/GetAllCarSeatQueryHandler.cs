@@ -25,7 +25,8 @@ namespace AutoService.Application.UseCases.ShopCases.CarSeatCases.Handlers.Query
         {
             var res = await _context.CarSeats.ToListAsync(cancellationToken);
             
-            return res;
+            return res.Skip(request.PageIndex - 1)
+                    .Take(request.Size).ToList(); ;
         }
     }
 }

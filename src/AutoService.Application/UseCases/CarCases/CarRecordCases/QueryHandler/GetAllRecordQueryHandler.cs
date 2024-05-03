@@ -35,7 +35,9 @@ namespace AutoService.Application.UseCases.CarCases.CarRecordCases.QueryHandler
                 Price = c.Price,
             }).ToList();
 
-            return Comments;
+            return Comments.Skip(request.PageIndex - 1)
+                    .Take(request.Size)
+                            .ToList(); ;
         }
 
     }

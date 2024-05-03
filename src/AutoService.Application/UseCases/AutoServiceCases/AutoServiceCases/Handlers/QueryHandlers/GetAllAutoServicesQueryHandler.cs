@@ -33,7 +33,9 @@ namespace AutoService.Application.UseCases.AutoServiceCases.AutoServiceCases.Han
                 location = s.Location,
             }).ToList();
 
-            return autoServiceViewModels;
+            return autoServiceViewModels.Skip(request.PageIndex - 1)
+                    .Take(request.Size)
+                            .ToList(); ;
         }
     }
 }

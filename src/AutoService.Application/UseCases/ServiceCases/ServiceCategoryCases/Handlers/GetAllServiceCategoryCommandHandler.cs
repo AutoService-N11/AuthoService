@@ -20,7 +20,10 @@ namespace AutoService.Application.UseCases.ServiceCases.ServiceCategoryCases.Han
 
         public async Task<List<ServiceCategory>> Handle(GetAllServiceCategoryCommand request, CancellationToken cancellationToken)
         {
-            return await _appDbContext.ServiceCategories.ToListAsync(cancellationToken);
+            var user= await _appDbContext.ServiceCategories.ToListAsync(cancellationToken);
+            return user.Skip(request.PageIndex - 1)
+                    .Take(request.Size)
+                            .ToList();
         }
     }
 }

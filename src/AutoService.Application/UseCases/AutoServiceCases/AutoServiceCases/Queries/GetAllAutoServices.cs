@@ -11,5 +11,7 @@ namespace AutoService.Application.UseCases.AutoServiceCases.AutoServiceCases.Que
 {
     public class GetAllAutoServices : IRequest<List<AutoServiceViewModel>>
     {
+        public int PageIndex { get; set; }
+        public int Size { get; set; } = 10;
     }
 }

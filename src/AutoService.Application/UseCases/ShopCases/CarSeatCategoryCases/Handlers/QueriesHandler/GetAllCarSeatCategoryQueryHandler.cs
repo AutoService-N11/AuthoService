@@ -28,7 +28,8 @@ namespace AutoService.Application.UseCases.ShopCases.CarSeatCategoryCases.Handle
                 startAge = x.startAge,
                 endAge = x.endAge,
             }).ToList();
-            return view;
+            return view.Skip(request.PageIndex - 1)
+                    .Take(request.Size).ToList(); ;
 
         }
     }

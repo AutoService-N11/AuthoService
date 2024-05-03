@@ -10,5 +10,7 @@ namespace AutoService.Application.UseCases.NewsCases.NewsCommentCases.Queries
 {
     public class GetAllNewsCommentQuery : IRequest<List<NewsCommentViewModel>>
     {
+        public int PageIndex { get; set; }
+        public int Size { get; set; } = 10;
     }
 }

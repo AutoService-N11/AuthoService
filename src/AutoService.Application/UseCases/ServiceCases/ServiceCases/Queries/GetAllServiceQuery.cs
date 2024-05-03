@@ -11,5 +11,7 @@ namespace AutoService.Application.UseCases.ServiceCases.ServiceCases.Queries
 {
     public class GetAllServiceQuery: IRequest<List<Service>>
     {
+        public int PageIndex { get; set; }
+        public int Size { get; set; } = 10;
     }
 }

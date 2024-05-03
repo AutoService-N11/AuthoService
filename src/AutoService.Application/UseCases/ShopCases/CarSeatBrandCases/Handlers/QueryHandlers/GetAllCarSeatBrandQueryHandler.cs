@@ -29,9 +29,7 @@ namespace AutoService.Application.UseCases.ShopCases.CarSeatBrandCases.Handlers.
                 Name = x.Name,
             }).ToList();
             return carSeatbrandViewModels.Skip(request.PageIndex - 1)
-                    .Take(request.Size)
-                        .Where(x => x.IsDeleted == false)
-                            .ToListAsync(); ;
+                    .Take(request.Size).ToList(); ;
         }
     }
 }

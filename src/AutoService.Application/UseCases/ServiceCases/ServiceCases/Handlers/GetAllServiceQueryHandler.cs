@@ -23,7 +23,9 @@ namespace AutoService.Application.UseCases.ServiceCases.ServiceCases.Handlers
         public async Task<List<Service>> Handle(GetAllServiceQuery request, CancellationToken cancellationToken) 
         {
             var user = await _appDbContext.Services.ToListAsync();
-            return user;
+            return user.Skip(request.PageIndex - 1)
+                    .Take(request.Size)
+                            .ToList();
         }
     }
 }

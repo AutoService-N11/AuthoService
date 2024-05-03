@@ -31,7 +31,9 @@ namespace AutoService.Application.UseCases.NewsCases.NewsCommentCases.Handlers.Q
                 Comment = c.Comment
             }).ToList();
 
-            return Comments;
+            return Comments.Skip(request.PageIndex - 1)
+                    .Take(request.Size)
+                            .ToList(); ;
         }
     }
 }
