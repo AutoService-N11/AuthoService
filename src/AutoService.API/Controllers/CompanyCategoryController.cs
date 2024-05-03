@@ -33,9 +33,9 @@ namespace AutoService.API.Controllers
             return result;
         }
         [HttpGet]
-        public async Task<List<CompanyCategory>> GetAllCompanyCategory([FromQuery] GetAllCompanyCategoryQuery request)
+        public async Task<List<CompanyCategory>> GetAllCompanyCategory()
         {
-            var res = await _mediator.Send(request);
+            var res = await _mediator.Send(new GetAllCompanyCategoryQuery());
             return res;
         }
 

@@ -24,12 +24,8 @@ namespace AutoService.Application.UseCases.CompanyCases.CompanyCategoryCases.Han
 
         public async Task<List<CompanyCategory>> Handle(GetAllCompanyCategoryQuery request, CancellationToken cancellationToken)
         {
-            var ctgs = await _context.CompanyCategories.ToListAsync(cancellationToken);
-
-
-            return ctgs.Skip(request.PageIndex - 1)
-                    .Take(request.Size)
-                            .ToList(); ;
+            return await _context.CompanyCategories
+                            .ToListAsync();
         }
     }
 }

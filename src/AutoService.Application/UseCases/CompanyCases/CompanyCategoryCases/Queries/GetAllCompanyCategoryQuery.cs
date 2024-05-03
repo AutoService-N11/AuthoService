@@ -13,7 +13,7 @@ namespace AutoService.Application.UseCases.CompanyCases.CompanyCategoryCases.Que
 {
     public class GetAllCompanyCategoryQuery : IRequest<List<CompanyCategory>>
     {
-        public int PageIndex { get; set; }
+        public int PageIndex { get; set; } = 1;
         public int Size { get; set; } = 10;
     }
 }

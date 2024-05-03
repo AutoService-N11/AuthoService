@@ -1,11 +1,13 @@
 
 using AutoService.Application;
 using AutoService.Application.Abstractions;
+using AutoService.Domain.Entities.Models.ServiceModels;
 using AutoService.Domain.Entities.Models.UserModels;
 using AutoService.Infrastracture;
 using AutoService.Infrastracture.Persistance;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.RateLimiting;
+using System.Text.Json.Serialization;
 
 namespace AutoService.API
 {
@@ -47,7 +49,14 @@ namespace AutoService.API
                 });
             });
 
+            builder.Services.AddControllersWithViews()
+               .AddJsonOptions(options =>
+               {
+                   options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+               });
+
             builder.Services.AddControllers();
+            
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
