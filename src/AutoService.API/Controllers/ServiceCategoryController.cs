@@ -20,13 +20,13 @@ namespace AutoService.API.Controllers
             _mediator = mediator;
         }
         [HttpPost]
-        public async Task<ResponceModel> CreateServiceCategory(UpdateSeateBrandCommand request)
+        public async Task<ResponceModel> CreateServiceCategory(CreateServiceCategoryCommand request)
         {
             var result = await _mediator.Send(request);
             return result;
         }
         [HttpGet]
-        public async Task<List<CarSeateBrandViewModel>> GetAllServiceCategory([FromQuery] GetAllServiceCategoryCommand request)
+        public async Task<List<ServiceCategory>> GetAllServiceCategory([FromQuery] GetAllServiceCategoryQuery request)
         {
             var result = await _mediator.Send(request);
             return result;
@@ -40,7 +40,7 @@ namespace AutoService.API.Controllers
         }
 
         [HttpDelete]
-        public async Task<ResponceModel> DeleteServiceCategory(DeleteSeateBrandCommand request)
+        public async Task<ResponceModel> DeleteServiceCategory(DeleteServiceCategoryCommand request)
         {
             var result = await _mediator.Send(request);
             return result;

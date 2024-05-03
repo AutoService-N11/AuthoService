@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AutoService.Application.UseCases.ServiceCases.ServiceCategoryCases.Commands
 {
-    public class DeleteSeateBrandCommand: IRequest<ResponceModel>
+    public class DeleteServiceCategoryCommand: IRequest<ResponceModel>
     {
         public Guid Id { get; set; }
     }

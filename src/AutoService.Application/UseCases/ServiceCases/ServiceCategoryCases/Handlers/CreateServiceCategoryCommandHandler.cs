@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AutoService.Application.UseCases.ServiceCases.ServiceCategoryCases.Handlers
 {
-    public class CreateServiceCategoryCommandHandler : IRequestHandler<UpdateSeateBrandCommand, ResponceModel>
+    public class CreateServiceCategoryCommandHandler : IRequestHandler<CreateServiceCategoryCommand, ResponceModel>
     {
         private readonly IAppDbContext _appDbContext;
 
@@ -17,7 +17,7 @@ namespace AutoService.Application.UseCases.ServiceCases.ServiceCategoryCases.Han
             _appDbContext = appDbContext;
         }
 
-        public async Task<ResponceModel> Handle(UpdateSeateBrandCommand request, CancellationToken cancellationToken)
+        public async Task<ResponceModel> Handle(CreateServiceCategoryCommand request, CancellationToken cancellationToken)
         {
             var serviceCategory = new CarSeateBrandViewModel
             {
