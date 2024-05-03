@@ -22,7 +22,7 @@ namespace AutoService.Application.UseCases.ServiceCases.ServiceCategoryCases.Han
                 Name = request.Name,
                 Id = request.Id,
             };
-            await _appDbContext.ServiceCategories.AllAsync(result);
+            await _appDbContext.ServiceCategories.AddAsync(result);
             await _appDbContext.SaveChangesAsync(cancellationToken);
 
             return new ResponceModel

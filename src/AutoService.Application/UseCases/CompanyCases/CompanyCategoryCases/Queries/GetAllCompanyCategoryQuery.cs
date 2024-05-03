@@ -1,4 +1,6 @@
+using AutoService.Domain.Entities.Models.CarModels;
 using AutoService.Domain.Entities.Models.CompanyModels;
+using AutoService.Domain.Entities.Models.UserModels;
 using AutoService.Domain.Entities.ViewModels.CompanyCategoryViewModels;
 using MediatR;
 using System;
@@ -9,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace AutoService.Application.UseCases.CompanyCases.CompanyCategoryCases.Queries
 {
-    public class GetAllCompanyCategoryQuery : IRequest<List<CompanyCategoryViewModel>>
+    public class GetAllCompanyCategoryQuery : IRequest<List<CompanyCategory>>
     {
         public int PageIndex { get; set; }
         public int Size { get; set; } = 10;
