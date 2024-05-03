@@ -1,6 +1,7 @@
 using AutoService.Application.Abstractions;
 using AutoService.Application.UseCases.CompanyCases.CompanyCases.Commands;
 using AutoService.Domain.Entities.Models;
+using AutoService.Domain.Entities.Models.CompanyModels;
 using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -25,47 +26,77 @@ namespace AutoService.Application.UseCases.CompanyCases.CompanyCases.Handlers
 
         public async Task<ResponceModel> Handle(CreateCompanyCommand request, CancellationToken cancellationToken)
         {
-            var company = await _context.Companies.FirstOrDefaultAsync(x => x.CompanyName == request.CompanyName);
-            string fileName = "";
-            string filePath = "";
-
-            if (request.PhotoPath is not null)
+            if (request == null)
             {
-                var file = request.PhotoPath;
-
-
-                    fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-                    filePath = Path.Combine(_webHostEnvironment.WebRootPath, "CompanyPhoto", fileName);
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await file.CopyToAsync(stream);
-                    }
-
-                
+                throw new ArgumentNullException(nameof(request));
             }
 
-                if (company == null)
+            // Check if file is not null
+            if (request.PhotoPath == null || request.PhotoPath.Length == 0)
+            {
+                // Handle missing photo
+                return new ResponceModel
                 {
-                    company.CompanyName = request.CompanyName;
-                    company.PhotoPath = filePath;
-                    company.CompanyHistory = request.CompanyHistory;
+                    Message = "Photo is required",
+                    StatusCode = 400
+                };
+            }
 
-                    await _context.Companies.AddAsync(company);
-                    await _context.SaveChangesAsync(cancellationToken);
-
-                    return new ResponceModel
-                    {
-                        Message = "You succesfully registered your company!",
-                        StatusCode = 200,
-                        IsSuccess = true
-                    };
-                }
-
+            // Check if the company already exists
+            var company = await _context.Companies.FirstOrDefaultAsync(x => x.CompanyName == request.CompanyName);
+            if (company != null)
+            {
                 return new ResponceModel
                 {
                     Message = "This company already exists",
                     StatusCode = 409
                 };
             }
+
+            // Generate file name and path
+            string fileName = Guid.NewGuid().ToString() + Path.GetExtension(request.PhotoPath.FileName);
+            string filePath = Path.Combine(_webHostEnvironment.WebRootPath, "CompanyPhoto", fileName);
+
+            try
+            {
+                // Ensure the directory exists
+                Directory.CreateDirectory(Path.GetDirectoryName(filePath));
+
+                // Save the file
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await request.PhotoPath.CopyToAsync(stream);
+                }
+
+                // Create a new company object
+                company = new Company
+                {
+                    CompanyName = request.CompanyName,
+                    PhotoPath = filePath,
+                    CompanyHistory = request.CompanyHistory,
+                    
+                };
+
+                // Add the company to the context and save changes
+                await _context.Companies.AddAsync(company, cancellationToken);
+                await _context.SaveChangesAsync(cancellationToken);
+
+                return new ResponceModel
+                {
+                    Message = "You successfully registered your company!",
+                    StatusCode = 200,
+                    IsSuccess = true
+                };
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+                return new ResponceModel
+                {
+                    Message = $"An error occurred: {ex.Message}",
+                    StatusCode = 500
+                };
+            }
         }
     }
+}
