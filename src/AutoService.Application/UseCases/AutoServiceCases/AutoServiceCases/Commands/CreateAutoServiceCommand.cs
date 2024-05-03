@@ -1,6 +1,8 @@
 using AutoService.Application.Abstractions;
 using AutoService.Domain.Entities.Models;
 using MediatR;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System;
 using System.Collections.Generic;
 using System.Linq;

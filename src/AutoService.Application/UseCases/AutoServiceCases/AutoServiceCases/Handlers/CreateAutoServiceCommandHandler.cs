@@ -3,6 +3,7 @@ using AutoService.Application.UseCases.AutoServiceCases.AutoServiceCases.Command
 using AutoService.Domain.Entities.Models;
 using AutoService.Domain.Entities.Models.AutoServiceModels;
 using MediatR;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,23 +16,17 @@ namespace AutoService.Application.UseCases.AutoServiceCases.AutoServiceCases.Han
     public class CreateAutoServiceCommandHandler : IRequestHandler<CreateAutoServiceCommand, ResponceModel>
     {
         private readonly IAppDbContext _context;
+   
 
         public CreateAutoServiceCommandHandler(IAppDbContext context)
         {
             _context = context;
+          
         }
 
         public async Task<ResponceModel> Handle(CreateAutoServiceCommand request, CancellationToken cancellationToken)
         {
-            if (request == null)
-            {
-                return new ResponceModel
-                {
-                    Message = "First fill properties!",
-                    StatusCode = 401
-                };
-            }
-
+           
             var services = _context.AutoServices.Where(x => x.CompanyId == request.CompanyId && x.Name == request.Name);
 
             if (services == null)

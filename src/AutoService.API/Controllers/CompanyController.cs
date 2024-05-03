@@ -1,4 +1,5 @@
 ﻿using AutoService.Application.UseCases.CompanyCases.CompanyCases.Commands;
+using AutoService.Application.UseCases.CompanyCases.CompanyCases.Handlers.QueryHandlers;
 using AutoService.Application.UseCases.CompanyCases.CompanyCases.Queries;
 using AutoService.Domain.Entities.Models;
 using AutoService.Domain.Entities.Models.CompanyModels;

@@ -37,7 +37,7 @@ namespace AutoService.Application.UseCases.NewsCases.NewsCases.Handlers
                 try
                 {
                     fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-                    filePath = Path.Combine(_webHostEnvironment.WebRootPath, "NewsPhoto", fileName);
+                    filePath = Path.Combine(_webHostEnvironment.WebRootPath, "images", fileName);
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {
                         await file.CopyToAsync(stream);
@@ -59,7 +59,7 @@ namespace AutoService.Application.UseCases.NewsCases.NewsCases.Handlers
             {
                 Name = request.Name,
                 Description = request.Description,
-                MainPhotoPath = filePath,
+                MainPhotoPath = "/images" +filePath,
             };
 
             await _context.news.AddAsync(news);

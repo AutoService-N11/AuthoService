@@ -14,7 +14,7 @@ namespace AutoService.Domain.Entities.Models.AutoServiceModels
     public class AutoServiceRating
     {
         public Guid Id { get; set; } = Guid.NewGuid();
-        public Guid UserId { get; set; }
+        public string UserId { get; set; }
         public Guid AutoServiceId { get; set; }
         public Guid CarId { get; set; }
         public Guid ServiceId { get; set; }

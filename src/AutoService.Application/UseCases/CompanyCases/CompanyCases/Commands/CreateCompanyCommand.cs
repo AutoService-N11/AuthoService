@@ -14,6 +14,7 @@ namespace AutoService.Application.UseCases.CompanyCases.CompanyCases.Commands
     public class CreateCompanyCommand : IRequest<ResponceModel>
     {
         public string CompanyName { get; set; }
+        public IFormFile FormFile { get; set; }
 
         [MaxLength(2000)]
         public string CompanyHistory { get; set; }

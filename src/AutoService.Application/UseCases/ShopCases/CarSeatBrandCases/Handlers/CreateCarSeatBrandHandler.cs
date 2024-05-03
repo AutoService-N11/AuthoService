@@ -1,6 +1,7 @@
 ﻿using AutoService.Application.Abstractions;
 using AutoService.Application.UseCases.ShopCases.CarSeatBrandCases.Commands;
 using AutoService.Domain.Entities.Models;
+using AutoService.Domain.Entities.Models.ShopModels.CarSeatModels;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -25,9 +26,13 @@ namespace AutoService.Application.UseCases.ShopCases.CarSeatBrandCases.Handlers
 
             if (res == null)
             {
-                res.Name = request.Name;
+                var result = new CarSeatBrand
+                {
+                    Name = request.Name,
+                };
+                
 
-                await _context.CarSeatBrands.AddAsync(res);
+                await _context.CarSeatBrands.AddAsync(result);
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return new ResponceModel

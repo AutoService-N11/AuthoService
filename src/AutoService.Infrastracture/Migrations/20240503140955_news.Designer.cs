@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AutoService.Infrastracture.Migrations
 {
     [DbContext(typeof(ServiceDbContext))]
-    [Migration("20240503120322_firs")]
-    partial class firs
+    [Migration("20240503140955_news")]
+    partial class news
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -83,10 +83,7 @@ namespace AutoService.Infrastracture.Migrations
                     b.Property<Guid>("ServiceId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("UserId1")
+                    b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -98,7 +95,7 @@ namespace AutoService.Infrastracture.Migrations
 
                     b.HasIndex("ServiceId");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("AutoServiceRatings");
                 });
@@ -274,7 +271,7 @@ namespace AutoService.Infrastracture.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("CompanyID")
+                    b.Property<Guid>("CompanyId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Name")
@@ -286,7 +283,7 @@ namespace AutoService.Infrastracture.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CompanyID");
+                    b.HasIndex("CompanyId");
 
                     b.HasIndex("ServicesId");
 
@@ -670,7 +667,7 @@ namespace AutoService.Infrastracture.Migrations
 
                     b.HasOne("AutoService.Domain.Entities.Models.UserModels.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId1")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -731,7 +728,7 @@ namespace AutoService.Infrastracture.Migrations
                 {
                     b.HasOne("AutoService.Domain.Entities.Models.CompanyModels.Company", "Company")
                         .WithMany("Services")
-                        .HasForeignKey("CompanyID")
+                        .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

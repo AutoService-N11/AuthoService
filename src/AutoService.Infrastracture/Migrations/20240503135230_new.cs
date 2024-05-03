@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AutoService.Infrastracture.Migrations
 {
     /// <inheritdoc />
-    public partial class firs : Migration
+    public partial class @new : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -397,19 +397,18 @@ namespace AutoService.Infrastracture.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    UserId = table.Column<Guid>(type: "uuid", nullable: false),
+                    UserId = table.Column<string>(type: "text", nullable: false),
                     AutoServiceId = table.Column<Guid>(type: "uuid", nullable: false),
                     CarId = table.Column<Guid>(type: "uuid", nullable: false),
                     ServiceId = table.Column<Guid>(type: "uuid", nullable: false),
-                    Comment = table.Column<string>(type: "text", nullable: false),
-                    UserId1 = table.Column<string>(type: "text", nullable: false)
+                    Comment = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AutoServiceRatings", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AutoServiceRatings_AspNetUsers_UserId1",
-                        column: x => x.UserId1,
+                        name: "FK_AutoServiceRatings_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -518,9 +517,9 @@ namespace AutoService.Infrastracture.Migrations
                 column: "ServiceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AutoServiceRatings_UserId1",
+                name: "IX_AutoServiceRatings_UserId",
                 table: "AutoServiceRatings",
-                column: "UserId1");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AutoServices_CompanyId",

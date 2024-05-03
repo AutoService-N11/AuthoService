@@ -14,6 +14,7 @@ namespace AutoService.Domain.Entities.Models.CompanyModels
         public Guid Id { get; set; } = Guid.NewGuid();
 
         public string CompanyName { get; set; }
+        public string Photo {  get; set; }
 
         [MaxLength(2000)]
         public string CompanyHistory {  get; set; }

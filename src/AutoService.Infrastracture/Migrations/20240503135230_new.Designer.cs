@@ -3,6 +3,7 @@ using System;
 using AutoService.Infrastracture.Persistance;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AutoService.Infrastracture.Migrations
 {
     [DbContext(typeof(ServiceDbContext))]
-    partial class ServiceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240503135230_new")]
+    partial class @new
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,10 +50,6 @@ namespace AutoService.Infrastracture.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Photo")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -189,10 +188,6 @@ namespace AutoService.Infrastracture.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Photo")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyCategoriesId");
@@ -276,7 +271,7 @@ namespace AutoService.Infrastracture.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("CompanyId")
+                    b.Property<Guid>("CompanyID")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Name")
@@ -288,7 +283,7 @@ namespace AutoService.Infrastracture.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CompanyId");
+                    b.HasIndex("CompanyID");
 
                     b.HasIndex("ServicesId");
 
@@ -330,10 +325,6 @@ namespace AutoService.Infrastracture.Migrations
                         .HasColumnType("double precision");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("PhotoPath")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -737,7 +728,7 @@ namespace AutoService.Infrastracture.Migrations
                 {
                     b.HasOne("AutoService.Domain.Entities.Models.CompanyModels.Company", "Company")
                         .WithMany("Services")
-                        .HasForeignKey("CompanyId")
+                        .HasForeignKey("CompanyID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

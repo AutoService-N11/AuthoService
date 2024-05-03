@@ -10,6 +10,7 @@ namespace AutoService.Domain.Entities.Models.ShopModels.CarSeatModels
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         public string Name { get; set; }
+        public string PhotoPath { get; set; }
         public string Price { get; set; }
         public string Guarantee { get; set; }
         public double Mass {  get; set; }

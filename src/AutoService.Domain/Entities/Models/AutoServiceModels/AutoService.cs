@@ -11,6 +11,7 @@ namespace AutoService.Domain.Entities.Models.AutoServiceModels
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         public Guid CompanyId { get; set; }
+        public string Photo {  get; set; }
         public string Name { get; set; }
         public string Location { get; set; }
         public string WebSitePath { get; set; }
