@@ -15,11 +15,9 @@ namespace AutoService.Application.UseCases.CompanyCases.CompanyCases.Commands
     {
         public string CompanyName { get; set; }
 
-        public IFormFile? PhotoPath { get; set; }
-
         [MaxLength(2000)]
         public string CompanyHistory { get; set; }
 
-        public List<Guid> CompanyCategoryId { get; set; }
+        public string OwnerId { get; set; }
     }
 }

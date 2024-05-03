@@ -15,12 +15,9 @@ namespace AutoService.Domain.Entities.Models.CompanyModels
 
         public string CompanyName { get; set; }
 
-        public string PhotoPath { get; set; }
-
         [MaxLength(2000)]
         public string CompanyHistory {  get; set; }
         public string OwnerId { get; set; }
-
 
         public virtual User Owner { get; set; }
         public virtual List<CompanyCategory> CompanyCategories { get; set; }

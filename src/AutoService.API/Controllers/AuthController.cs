@@ -1,15 +1,16 @@
 ﻿using AutoService.Application.UseCases.AuthServices;
 using AutoService.Domain.Entities.DTOs;
-using AutoService.Domain.Entities.Models;
 using AutoService.Domain.Entities.Models.UserModels;
+using AutoService.Domain.Entities.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AutoService.API.Controllers
+namespace Clinic.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
+
     public class AuthController : ControllerBase
     {
         private readonly UserManager<User> _userManager;
@@ -26,31 +27,45 @@ namespace AutoService.API.Controllers
         {
             if (!ModelState.IsValid)
             {
-                throw new Exception();
+                return BadRequest(new ResponceModel()
+                {
+                    IsSuccess = false,
+                    Message = "Invalid model state",
+                    StatusCode = 400
+                });
             }
-
 
             var user = new User()
             {
+                UserName = register.Firstname,
                 Email = register.Email,
                 FirstName = register.Firstname,
                 LastName = register.Lastname,
+                Role = "User"
             };
 
             var result = await _userManager.CreateAsync(user, register.Password);
 
             if (!result.Succeeded)
-                throw new Exception();
+            {
+                var errors = result.Errors.Select(e => e.Description);
+                return BadRequest(new ResponceModel()
+                {
+                    IsSuccess = false,
+                    Message = "Failed to create user",
+                    StatusCode = 400,
+
+                });
+            }
 
             await _userManager.AddToRoleAsync(user, "User");
 
             return Ok(new ResponceModel()
             {
                 IsSuccess = true,
-                Message = "Muvaffaqiyatli yaratildi",
+                Message = "User created successfully",
                 StatusCode = 201
             });
-
         }
 
         [HttpPost]
@@ -58,7 +73,12 @@ namespace AutoService.API.Controllers
         {
             if (!ModelState.IsValid)
             {
-                throw new Exception();
+                return BadRequest(new TokenDTO()
+                {
+                    Message = "Invalid model state",
+                    isSuccess = false,
+                    Token = ""
+                });
             }
             var user = await _userManager.FindByEmailAsync(login.Email);
 
@@ -66,7 +86,7 @@ namespace AutoService.API.Controllers
             {
                 return BadRequest(new TokenDTO()
                 {
-                    Message = "Email Not found",
+                    Message = "Email not found",
                     isSuccess = false,
                     Token = ""
                 });
@@ -77,7 +97,7 @@ namespace AutoService.API.Controllers
             {
                 return BadRequest(new TokenDTO()
                 {
-                    Message = "Password not match",
+                    Message = "Incorrect password",
                     isSuccess = false,
                     Token = ""
                 });
@@ -89,9 +109,9 @@ namespace AutoService.API.Controllers
             {
                 Token = token,
                 isSuccess = true,
-                Message = "Success"
+                Message = "Login successful"
             });
-
         }
+
     }
 }

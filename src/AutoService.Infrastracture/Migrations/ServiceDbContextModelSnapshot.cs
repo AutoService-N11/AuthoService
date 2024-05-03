@@ -182,10 +182,6 @@ namespace AutoService.Infrastracture.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("PhotoPath")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.HasKey("Id");
 
                     b.HasIndex("OwnerId");
@@ -203,7 +199,7 @@ namespace AutoService.Infrastracture.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid?>("CompanyId")
+                    b.Property<Guid>("CompanyId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
@@ -715,9 +711,13 @@ namespace AutoService.Infrastracture.Migrations
 
             modelBuilder.Entity("AutoService.Domain.Entities.Models.CompanyModels.CompanyCategory", b =>
                 {
-                    b.HasOne("AutoService.Domain.Entities.Models.CompanyModels.Company", null)
+                    b.HasOne("AutoService.Domain.Entities.Models.CompanyModels.Company", "Company")
                         .WithMany("CompanyCategories")
-                        .HasForeignKey("CompanyId");
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Company");
                 });
 
             modelBuilder.Entity("AutoService.Domain.Entities.Models.NewsModels.NewsComment", b =>

@@ -29,7 +29,7 @@ namespace AutoService.Application.UseCases.CompanyCases.CompanyCases.Handlers.Qu
                 .Select(c => new CompanyViewModel
                 {
                     CompanyName = c.CompanyName,
-                    PhotoPath = c.PhotoPath,
+                 
                     CompanyHistory = c.CompanyHistory,
                 })
                 .ToListAsync();

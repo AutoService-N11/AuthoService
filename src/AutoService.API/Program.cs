@@ -61,7 +61,7 @@ namespace AutoService.API
 
             app.UseHttpsRedirection();
 
-            //app.UseRateLimiter();
+            app.UseRateLimiter();
 
             app.UseStaticFiles();
 
@@ -74,7 +74,7 @@ namespace AutoService.API
             using (var scope = app.Services.CreateScope())
             {
                 var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-                var roles = new[] { "Admin", "User", "Doctor" };
+                var roles = new[] { "Admin", "User"};
 
                 foreach (var role in roles)
                 {
