@@ -21,13 +21,13 @@ namespace AutoService.API.Controllers
             _mediator = mediator;
         }
         [HttpPost]
-        public async Task<ResponceModel> CreateServiceCategory(CreateCarSeatCategoryCommand request)
+        public async Task<ResponceModel> CreateCarSeatCategory(CreateCarSeatCategoryCommand request)
         {
             var result = await _mediator.Send(request);
             return result;
         }
         [HttpGet]
-        public async Task<IEnumerable<CarSeatCategory>> GetAllServiceCategory([FromQuery] GetAllCarSeatCategoryQuery request)
+        public async Task<IEnumerable<CarSeatCategory>> GetAllCarSeatCategory([FromQuery] GetAllCarSeatCategoryQuery request)
         {
             var result = await _mediator.Send(request);
             return result;
