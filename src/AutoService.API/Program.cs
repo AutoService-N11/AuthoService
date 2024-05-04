@@ -15,7 +15,23 @@ namespace AutoService.API
     {
         public static async Task Main(string[] args)
         {
+
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddRateLimiter(x =>
+            {
+                x.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+
+                x.AddFixedWindowLimiter("fixed", options =>
+                {
+                    options.Window = TimeSpan.FromSeconds(60);
+                    options.PermitLimit = 60;
+                    options.QueueLimit = 20;
+                });
+            });
+
+         
+
 
 
             builder.Services.AddInfrastructure(builder.Configuration);
