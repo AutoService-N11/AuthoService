@@ -19,8 +19,7 @@ namespace AutoService.Application.UseCases.ServiceCases.ServiceCategoryCases.Han
         {
             var result = new ServiceCategory
             {
-                Name = request.Name,
-                Id = request.Id,
+                Name = request.Name
             };
             await _appDbContext.ServiceCategories.AddAsync(result);
             await _appDbContext.SaveChangesAsync(cancellationToken);

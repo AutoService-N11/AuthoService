@@ -20,7 +20,8 @@ namespace AutoService.Application.UseCases.ServiceCases.ServiceCases.Handlers
             
             Service service = new Service
             {
-                Name = request.Name
+                Name = request.Name,
+                ServicesId = request.ServicesId
             };
 
             _appDbContext.Services.Add(service);

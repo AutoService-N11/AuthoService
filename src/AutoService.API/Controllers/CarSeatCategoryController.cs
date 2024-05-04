@@ -11,7 +11,7 @@ using AutoService.Domain.Entities.ViewModels.CarSeatViewModels;
 
 namespace AutoService.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class CarSeatCategoryController : ControllerBase
     {
