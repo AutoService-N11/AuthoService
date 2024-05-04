@@ -13,6 +13,6 @@ namespace AutoService.Application.UseCases.CarCases.CarCases.Queries
     {
         public int PageIndex { get; set; }
         public int Size { get; set; } = 10;
-        public string UsersId { get; set; }
+        public string UserId { get; set; }
     }
 }

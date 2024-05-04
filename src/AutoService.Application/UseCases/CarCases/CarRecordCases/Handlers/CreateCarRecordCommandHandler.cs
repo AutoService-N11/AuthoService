@@ -4,6 +4,7 @@ using AutoService.Domain.Entities.Models;
 using AutoService.Domain.Entities.Models.CarModels;
 using AutoService.Domain.Entities.ViewModels.CarRecordViewModels;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,20 +24,33 @@ namespace AutoService.Application.UseCases.CarCases.CarRecordCases.Handlers
 
         public async Task<ResponceModel> Handle(CreateCarRecordCommand request, CancellationToken cancellationToken)
         {
+            var car = await _context.Cars.FirstOrDefaultAsync(x => x.Id == request.UserCarId);
+
+            if (car == null)
+            {
+                return new ResponceModel
+                {
+                    Message = "car not found",
+                    StatusCode = 404
+                };
+            }
             var result = new CarRecord()
             {
                 UserCaresId = request.UserCarId,
-                createdDate = request.createdDate,
                 Probeg = request.Probeg,
                 RecordTask = request.RecordTask,
                 Comment = request.Comment,
                 Price = request.Price,
             };
+
+            await _context.CarRecords.AddAsync(result);
+            await _context.SaveChangesAsync(cancellationToken);
+
             return new ResponceModel
             {
                 Message = "CarRecord created",
                 StatusCode = 200,
-
+                IsSuccess = true
             };
         }
     }

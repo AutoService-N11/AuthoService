@@ -32,7 +32,6 @@ namespace AutoService.Application.UseCases.CarCases.CarCases.Handlers
                 res.CarModel = request.CarModel;
                 res.ProdYear = request.ProdYear;
                 res.VINcode = request.VINcode;
-                res.UsersId = request.UserId; 
 
                 _context.Cars.Update(res);
                 await _context.SaveChangesAsync(cancellationToken);

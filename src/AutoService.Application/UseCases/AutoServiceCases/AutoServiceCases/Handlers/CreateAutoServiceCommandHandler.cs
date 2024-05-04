@@ -26,36 +26,48 @@ namespace AutoService.Application.UseCases.AutoServiceCases.AutoServiceCases.Han
 
         public async Task<ResponceModel> Handle(CreateAutoServiceCommand request, CancellationToken cancellationToken)
         {
-           
-            var services = _context.AutoServices.Where(x => x.CompanyId == request.CompanyId && x.Name == request.Name);
-
-            if (services == null)
+            var company = await _context.Companies.FirstOrDefaultAsync(x => x.Id == request.CompanyId);
+            if (company != null)
             {
-                var autoservice = new AutoServiceModel
+                var servicesCheck = false;
+                foreach (var s in request.ServicesId)
                 {
-                    CompanyId = request.CompanyId,
-                    Name = request.Name,
-                    Location = request.Location,
-                    WebSitePath = request.WebSitePath,
-                    PhoneNumber = request.PhoneNumber,
-                    Email = request.Email
-                };
-
-                await _context.AutoServices.AddAsync(autoservice);
-                await _context.SaveChangesAsync(cancellationToken);
-
-                return new ResponceModel
+                    if (company.ServicesId.Contains(s))
+                    {
+                        servicesCheck = true;
+                    }
+                    else servicesCheck = false;
+                }
+                if (servicesCheck)
                 {
-                    Message = "You succesfully registered your service!",
-                    StatusCode = 200,
-                    IsSuccess = true
-                };
+                    var autoservice = new AutoServiceModel
+                    {
+                        CompanyId = request.CompanyId,
+                        Name = company.CompanyName,
+                        Location = request.Location,
+                        Photo = company.Photo,
+                        WebSitePath = request.WebSitePath,
+                        PhoneNumber = request.PhoneNumber,
+                        Email = request.Email,
+                        ServicesId = request.ServicesId,
+                    };
+
+                    await _context.AutoServices.AddAsync(autoservice);
+                    await _context.SaveChangesAsync(cancellationToken);
+
+                    return new ResponceModel
+                    {
+                        Message = "You succesfully registered your service!",
+                        StatusCode = 200,
+                        IsSuccess = true
+                    };
+                }
             }
 
             return new ResponceModel
             {
-                Message = "This Autoservice already exists!",
-                StatusCode = 409
+                Message = "This company doesnt exists!",
+                StatusCode = 404
             };
         }
     }

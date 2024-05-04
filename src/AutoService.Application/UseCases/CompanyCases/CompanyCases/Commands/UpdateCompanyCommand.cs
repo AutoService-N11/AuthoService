@@ -12,13 +12,15 @@ namespace AutoService.Application.UseCases.CompanyCases.CompanyCases.Commands
 {
     public class UpdateCompanyCommand : IRequest<ResponceModel>
     {
-        public string CompanyName { get; set; }
-
+        public Guid Id { get; set; }
+        public Guid CompanyCategoryId { get; set; }
         public IFormFile? PhotoPath { get; set; }
+        public string CompanyName { get; set; }
 
         [MaxLength(2000)]
         public string CompanyHistory { get; set; }
 
-        public List<Guid> CompanyCategoryId { get; set; }
+        public List<Guid> ServicesId { get; set; }
+
     }
 }
