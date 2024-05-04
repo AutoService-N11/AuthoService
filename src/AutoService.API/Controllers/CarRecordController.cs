@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AutoService.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class CarRecordController : ControllerBase
     {
@@ -31,7 +31,7 @@ namespace AutoService.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<CarRecord>> GetAllNews([FromQuery] GetAllCarRecordQuery request)
+        public async Task<IEnumerable<CarRecord>> GetAllCarRecord([FromQuery] GetAllCarRecordQuery request)
         {
             var result = await _mediatr.Send(request);
             return result;

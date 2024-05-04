@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AutoService.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class AutoServiceController : ControllerBase
     {
@@ -38,7 +38,7 @@ namespace AutoService.API.Controllers
         }
 
         [HttpDelete]
-        public async Task<ResponceModel> DeleteNews(DeleteAutoServiceCommand request)
+        public async Task<ResponceModel> DeleteAutoService(DeleteAutoServiceCommand request)
         {
             var result = await _mediatr.Send(request);
             return result;
