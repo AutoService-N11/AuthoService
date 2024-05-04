@@ -13,7 +13,7 @@ namespace AutoService.Application.UseCases.CarCases.CarCases.Commands
         public string UserId { get; set; }
         public string Brand { get; set; }
         public string CarModel { get; set; }
-        public DateTimeOffset ProdYear { get; set; }
+        public string ProdYear { get; set; }
         public string VINcode { get; set; }
     }
 }

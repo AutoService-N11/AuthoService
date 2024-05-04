@@ -23,12 +23,10 @@ namespace AutoService.Application.UseCases.NewsCases.NewsCommentCases.Handlers.Q
 
         public async Task<List<NewsComment>> Handle(GetAllNewsCommentQuery request, CancellationToken cancellationToken)
         {
-            var comments = await _context.newsComments.ToListAsync(cancellationToken);
 
-
-            return comments.Skip(request.PageIndex - 1)
-                    .Take(request.Size)
-                            .ToList(); ;
+            return await _context.newsComments.Skip(request.PageIndex - 1)
+                    .Take(request.Size).Where(x=>x.NewsId == request.NewsId)
+                            .ToListAsync(cancellationToken);
         }
     }
 }

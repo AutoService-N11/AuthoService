@@ -10,8 +10,8 @@ namespace AutoService.Domain.Entities.Models.CarModels
     public class CarRecord
     {
         public Guid Id { get; set; } = Guid.NewGuid();
-        public string UserCaresId { get; set; }
-        public DateTimeOffset createdDate { get; set; } = DateTimeOffset.Now;
+        public Guid UserCaresId { get; set; }
+        public DateTime createdDate { get; set; } = DateTime.UtcNow;
         public int Probeg { get; set; }
         public string RecordTask { get; set; }
         public string Comment { get; set; }

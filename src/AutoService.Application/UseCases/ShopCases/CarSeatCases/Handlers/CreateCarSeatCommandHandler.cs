@@ -37,7 +37,7 @@ namespace AutoService.Application.UseCases.ShopCases.CarSeatCases.Handlers
                 try
                 {
                     fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-                    filePath = Path.Combine(_webHostEnvironment.WebRootPath, "NewPh", fileName);
+                    filePath = Path.Combine(_webHostEnvironment.WebRootPath, "CarSeatPhotos", fileName);
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {
                         await file.CopyToAsync(stream);
@@ -56,7 +56,7 @@ namespace AutoService.Application.UseCases.ShopCases.CarSeatCases.Handlers
             }
             var res = new CarSeat();
             res.Name = request.Name;
-            res.PhotoPath = "/NewPh" + filePath;
+            res.PhotoPath = filePath;
             res.Price = request.Price;
             res.CategoryId = request.CategoryId;
             res.BrandId = request.BrandId;

@@ -1,3 +1,4 @@
+using AutoService.Domain.Entities.Models.AutoServiceModels;
 using AutoService.Domain.Entities.Models.CompanyModels;
 
 using System;
@@ -12,9 +13,7 @@ namespace AutoService.Domain.Entities.Models.ServiceModels
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         public string Name { get; set; }
-        public Guid CompanyId { get; set; } 
         public Guid ServicesId { get; set; }
-        public virtual Company Company { get; set; }
         public virtual ServiceCategory Services { get; set; }
 
     }

@@ -22,12 +22,14 @@ namespace AutoService.Application.UseCases.CompanyCases.CompanyCases.Handlers
 
         public async Task<ResponceModel> Handle(UpdateCompanyCommand request, CancellationToken cancellationToken)
         {
-            var company = await _context.Companies.FirstOrDefaultAsync(x => x.CompanyName == request.CompanyName);
+            var company = await _context.Companies.FirstOrDefaultAsync(x => x.Id == request.Id);
 
             if (company != null)
             {
+                company.CompanyCategoriesId = request.CompanyCategoryId;
                 company.CompanyName = request.CompanyName;
                 company.CompanyHistory = request.CompanyHistory;
+                company.ServicesId = request.ServicesId;
                 _context.Companies.Update(company);
                 await _context.SaveChangesAsync(cancellationToken);
 

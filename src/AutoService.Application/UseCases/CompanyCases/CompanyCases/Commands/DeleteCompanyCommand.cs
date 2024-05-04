@@ -10,6 +10,6 @@ namespace AutoService.Application.UseCases.CompanyCases.CompanyCases.Commands
 {
     public class DeleteCompanyCommand : IRequest<ResponceModel>
     {
-        public Guid CompanyCategoriesId { get; set; }
+        public Guid Id { get; set; }
     }
 }

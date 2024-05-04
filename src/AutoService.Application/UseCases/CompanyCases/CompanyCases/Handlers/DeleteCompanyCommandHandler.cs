@@ -22,7 +22,7 @@ namespace AutoService.Application.UseCases.CompanyCases.CompanyCases.Handlers
 
         public async Task<ResponceModel> Handle(DeleteCompanyCommand request, CancellationToken cancellationToken)
         {
-            var company = await _context.Companies.FirstOrDefaultAsync(x => x.CompanyCategoriesId == request.CompanyCategoriesId);
+            var company = await _context.Companies.FirstOrDefaultAsync(x => x.Id == request.Id);
 
             if (company != null)
             {

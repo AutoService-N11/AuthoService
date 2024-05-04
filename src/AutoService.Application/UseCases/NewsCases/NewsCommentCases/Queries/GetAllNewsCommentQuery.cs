@@ -13,5 +13,6 @@ namespace AutoService.Application.UseCases.NewsCases.NewsCommentCases.Queries
     {
         public int PageIndex { get; set; }
         public int Size { get; set; } = 10;
+        public Guid NewsId { get; set; }
     }
 }

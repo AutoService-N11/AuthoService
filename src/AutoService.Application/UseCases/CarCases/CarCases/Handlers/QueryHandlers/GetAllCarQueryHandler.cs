@@ -25,7 +25,7 @@ namespace AutoService.Application.UseCases.CarCases.CarCases.Handlers.QueryHandl
         public async Task<IEnumerable<UserCar>> Handle(GetAllCarQuery request, CancellationToken cancellationToken)
         {
             var res = await _context.Cars.ToListAsync(cancellationToken);
-            var result = res.Where(x => x.UsersId == request.UsersId).ToList();
+            var result = res.Where(x => x.UsersId == request.UserId).ToList();
 
             return result.Skip(request.PageIndex - 1)
                     .Take(request.Size)

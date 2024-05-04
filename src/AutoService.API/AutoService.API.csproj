@@ -21,4 +21,9 @@
     <ProjectReference Include="..\AutoService.Infrastracture\AutoService.Infrastracture.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\CarSeatPhotos\" />
+    <Folder Include="wwwroot\NewsPhoto\" />
+  </ItemGroup>
+
 </Project>

@@ -33,7 +33,7 @@ namespace AutoService.Application.UseCases.CompanyCases.CompanyCases.Handlers
                 try
                 {
                     fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-                    filePath = Path.Combine(_webHostEnvironment.WebRootPath, "Company", fileName);
+                    filePath = Path.Combine(_webHostEnvironment.WebRootPath, "CompanyPhoto", fileName);
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {
                         await file.CopyToAsync(stream);
@@ -56,13 +56,12 @@ namespace AutoService.Application.UseCases.CompanyCases.CompanyCases.Handlers
                 var diplom = new Company()
                 {
                
-                    CompanyHistory = request.CompanyHistory,
-                    Photo = "/Company" + filePath,
+                    CompanyCategoriesId = request.CompanyCategoryId,
+                    Photo = filePath,
                     CompanyName = request.CompanyName,
-                    CompanyCategoriesId = request.CompanyCategoryId
+                    CompanyHistory = request.CompanyHistory,
+                    ServicesId = request.ServicesId,
                 };
-                var auto = await _context.AutoServices.FirstOrDefaultAsync(x => x.Name == diplom.CompanyName);
-                auto.Photo = "/Company" + filePath;
 
                 await _context.Companies.AddAsync(diplom);
                 await _context.SaveChangesAsync(cancellationToken);

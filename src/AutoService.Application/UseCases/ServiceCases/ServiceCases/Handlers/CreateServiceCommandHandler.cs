@@ -17,13 +17,10 @@ namespace AutoService.Application.UseCases.ServiceCases.ServiceCases.Handlers
         }
         public async Task<ResponceModel> Handle(CreateServiceCommand request, CancellationToken cancellationToken)
         {
+            
             Service service = new Service
             {
-                Name = request.Name,
-                CompanyId = request.CompanyId,
-                ServicesId = request.ServicesId
-
-
+                Name = request.Name
             };
 
             _appDbContext.Services.Add(service);
