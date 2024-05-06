@@ -5,11 +5,13 @@ using AutoService.Domain.Entities.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 
 namespace Clinic.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
+    [EnableRateLimiting("fixed")]
 
     public class AuthController : ControllerBase
     {
@@ -109,8 +111,8 @@ namespace Clinic.API.Controllers
             {
                 Token = token,
                 isSuccess = true,
-                Message = "Login successful"
-            });
+                Message = $"Login successful You id {user.Id}"
+            }) ;
         }
 
     }
