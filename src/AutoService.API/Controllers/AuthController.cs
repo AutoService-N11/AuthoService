@@ -11,8 +11,6 @@ namespace Clinic.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    [EnableRateLimiting("fixed")]
-
     public class AuthController : ControllerBase
     {
         private readonly UserManager<User> _userManager;

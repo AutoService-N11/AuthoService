@@ -13,8 +13,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AutoService.Infrastracture.Migrations
 {
     [DbContext(typeof(ServiceDbContext))]
-    [Migration("20240504105406_nesss")]
-    partial class nesss
+    [Migration("20240528100950_test")]
+    partial class test
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

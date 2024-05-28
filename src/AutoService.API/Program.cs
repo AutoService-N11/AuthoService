@@ -95,7 +95,7 @@ using (var scope = app.Services.CreateScope())
     {
         if (!await roleManager.RoleExistsAsync(role))
         {
-            roleManager.CreateAsync(new IdentityRole(role));
+            roleManager.CreateAsync(new IdentityRole(role)).Wait();
         }
     }
 }
@@ -108,7 +108,7 @@ using (var scope = app.Services.CreateScope())
     string email = "admin@gmail.com";
     string password = "Adminaka1!";
 
-    if (userManager.FindByEmailAsync(email) == null)
+    if (await userManager.FindByEmailAsync(email) == null)
     {
         var user = new User()
         {
@@ -120,9 +120,9 @@ using (var scope = app.Services.CreateScope())
             EmailConfirmed = true
         };
 
-        userManager.CreateAsync(user, password);
+        await userManager.CreateAsync(user, password);
 
-        userManager.AddToRoleAsync(user, "Admin");
+        await userManager.AddToRoleAsync(user, "Admin");
     }
 }
 app.Run();
