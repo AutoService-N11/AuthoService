@@ -56,7 +56,7 @@ namespace AutoService.Application.UseCases.ShopCases.CarSeatCases.Handlers
             }
             var res = new CarSeat();
             res.Name = request.Name;
-            res.PhotoPath = filePath;
+            res.PhotoPath = "/CarSeatPhotos/" + fileName;
             res.Price = request.Price;
             res.CategoryId = request.CategoryId;
             res.BrandId = request.BrandId;

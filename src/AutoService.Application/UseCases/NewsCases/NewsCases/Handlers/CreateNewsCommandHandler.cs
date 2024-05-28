@@ -55,11 +55,11 @@ namespace AutoService.Application.UseCases.NewsCases.NewsCases.Handlers
             }
 
 
-            var news = new News
+            var news = new News()
             {
                 Name = request.Name,
                 Description = request.Description,
-                MainPhotoPath = filePath,
+                MainPhotoPath = "/NewsPhoto/" + fileName,
             };
 
             await _context.news.AddAsync(news);

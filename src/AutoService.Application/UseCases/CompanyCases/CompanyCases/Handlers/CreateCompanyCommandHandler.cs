@@ -57,7 +57,7 @@ namespace AutoService.Application.UseCases.CompanyCases.CompanyCases.Handlers
                 {
                
                     CompanyCategoriesId = request.CompanyCategoryId,
-                    Photo = filePath,
+                    Photo = "/CompanyPhoto/" + fileName,
                     CompanyName = request.CompanyName,
                     CompanyHistory = request.CompanyHistory,
                     ServicesId = request.ServicesId,
