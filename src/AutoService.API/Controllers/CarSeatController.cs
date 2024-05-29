@@ -32,10 +32,13 @@ namespace AutoService.API.Controllers
             var result = await _mediator.Send(request);
             return result;
         }
-        [HttpGet]
-        public async Task<CarSeat> GetByIdCarSeat(GetByIdCarSeatQuery request) 
+        [HttpGet("{id}")]
+        public async Task<CarSeat> GetByIdCarSeat(Guid id) 
         {
-            var result = await _mediator.Send(request);
+            var result = await _mediator.Send(new GetByIdCarSeatQuery()
+            {
+                id = id
+            });
             return result;
         }
 
