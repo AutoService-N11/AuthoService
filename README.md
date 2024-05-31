@@ -36,3 +36,8 @@ AutoService is your all-in-one solution for managing automotive services, enhanc
 practices.
 
 <h2>Screenshots</h2>
+
+![image](https://github.com/usman-hashimov/AutoService/blob/main/.scrn/1.png)
+![image](https://github.com/usman-hashimov/AutoService/blob/main/.scrn/2.png)
+![image](https://github.com/usman-hashimov/AutoService/blob/main/.scrn/3.png)
+![image](https://github.com/usman-hashimov/AutoService/blob/main/.scrn/4.png)
